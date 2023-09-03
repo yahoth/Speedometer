@@ -13,7 +13,8 @@ import RealmSwift
 class ViewController: UIViewController {
     var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
-    var totalSpeeds: [Double] = []
+    var totalSpeeds: [Double]!
+
     @IBOutlet weak var speedLabel: UILabel!
 
     @IBOutlet weak var mapView: MKMapView!
@@ -24,15 +25,43 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        getLocationUsagePermission()
-        locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(.follow, animated: true)
+        setUserTrackingMode()
         mapView.delegate = self
+        totalSpeeds = []
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        self.locationManager.stopUpdatingLocation()
+    //현재 위치로 이동
+    @IBAction func locationButton(_ sender: Any) {
+        setUserTrackingMode()
+    }
+
+    private func setUserTrackingMode() {
+        if locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways {
+            mapView.setUserTrackingMode(.follow, animated: true)
+        }
+    }
+
+    func getLocationUsagePermission() {
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    func showLocationDisabledAlert() {
+        let alert = UIAlertController(title: "Location Access Disabled",
+                                      message: "In order to measure speed we need your location",
+                                      preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { action in
+            if let url = URL(string:UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            }
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(openAction)
+
+        self.present(alert, animated:true, completion:nil)
     }
 }
 
@@ -57,39 +86,38 @@ extension ViewController: CLLocationManagerDelegate {
 
         let speed = location.speed
         let speedInKmH = max(speed * 3.6, 0)
+
         print(speedInKmH)
-        DispatchQueue.main.async { [self] in
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.speedLabel.text = "\(Int(speedInKmH))"
             if speedInKmH > 0 {
                 self.totalSpeeds.append(speedInKmH)
             }
-            if totalSpeeds.count > 0 {
-                self.averageSpeedLabel.text = "\(Int(totalSpeeds.reduce(0, +)) / totalSpeeds.count)"
+            if self.totalSpeeds.count > 0 {
+                self.averageSpeedLabel.text = "\(Int(self.totalSpeeds.reduce(0, +)) / self.totalSpeeds.count)"
             }
         }
         previousCoordinate = location.coordinate
     }
 
-    func getLocationUsagePermission() {
-        locationManager.requestWhenInUseAuthorization()
-    }
-
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            print("GPS 권한 설정됨")
-        case .restricted, .notDetermined:
-            print("GPS 권한 설정되지 않음")
-            DispatchQueue.main.async { [weak self] in
-                self?.getLocationUsagePermission()
-            }
-        case .denied:
-            print("GPS 권한 요청 거부됨")
-            DispatchQueue.main.async { [weak self] in
-                self?.getLocationUsagePermission()
-            }
+            locationManager.startUpdatingLocation()
+            mapView.setUserTrackingMode(.follow, animated: true)
+            break
+
+        case .restricted, .denied:
+            showLocationDisabledAlert()
+
+        case .notDetermined:
+            getLocationUsagePermission()
+            break
+
         default:
-            print("GPS: Default")
+            break
         }
     }
 
@@ -105,10 +133,20 @@ extension ViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         let renderer = MKPolylineRenderer(polyline: polyLine)
-        renderer.strokeColor = .orange
-        renderer.lineWidth = 5.0
+        renderer.strokeColor = .blue
+        renderer.lineWidth = 8.0
         renderer.alpha = 1.0
 
         return renderer
     }
 }
+
+/// FIX: 현재 속도는 그럭저럭 비슷하게 나온다.
+/// 하지만 평균 속도를 구하는 방법이 잘못됐다.
+/// 현재는, 0이상의 count되는 속도만 count수로 나눈다.
+/// 해결책1:
+/// didUpdateLocation이 움직임을 측정해서 count가 시작이 되면,
+/// 타이머를 가동하여 1초마다 측정된 속도를 집계해서 배열에 넣는다.
+/// 시작이 된 시간을 집계해서 속도를 다 더하고 나눈다.
+///
+

@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -46,6 +47,22 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yo-nm-4Al">
+                                <rect key="frame" x="20" y="109" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="VSG-Tn-1mN"/>
+                                    <constraint firstAttribute="height" constant="44" id="Xgd-Gg-1vC"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="location" catalog="system" symbolScale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eqz-8X-0iY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -55,6 +72,8 @@
                             <constraint firstItem="w0N-Hc-vGs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lxn-BV-Za6"/>
                             <constraint firstItem="wuV-if-MJb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jyi-42-CAp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w0N-Hc-vGs" secondAttribute="trailing" id="k0c-Ck-T9d"/>
+                            <constraint firstItem="5yo-nm-4Al" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="k89-he-Hf8"/>
+                            <constraint firstItem="5yo-nm-4Al" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="kxa-mp-Z9n"/>
                             <constraint firstItem="wuV-if-MJb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sxb-E3-hhy"/>
                             <constraint firstItem="w0N-Hc-vGs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wc6-ma-c6B"/>
                         </constraints>
@@ -71,6 +90,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
