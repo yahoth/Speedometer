@@ -301,6 +301,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GPSPractice/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -329,6 +331,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GPSPractice/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

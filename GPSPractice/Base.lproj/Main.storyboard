@@ -63,6 +63,62 @@
                                     <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eqz-8X-0iY"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gd-1L-Ka1">
+                                <rect key="frame" x="261" y="59" width="132" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Md1-pz-ghj">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="6WR-os-867"/>
+                                            <constraint firstAttribute="width" constant="44" id="SH5-Zn-ztj"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wca-Ld-6L5"/>
+                                            <action selector="startTrackingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaD-gC-rHb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bc-kv-xeC">
+                                        <rect key="frame" x="44" y="0.0" width="44" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="57Y-LP-tr3"/>
+                                            <constraint firstAttribute="width" constant="44" id="g7n-nJ-pzX"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="pause.fill" catalog="system" symbolScale="default"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mej-2z-0J6"/>
+                                            <action selector="stopTrackingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BW9-dC-umk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vD-PU-VPE">
+                                        <rect key="frame" x="88" y="0.0" width="44" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="JpL-gh-ZHK"/>
+                                            <constraint firstAttribute="height" constant="44" id="fF3-s9-b4X"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="printer.fill" catalog="system" symbolScale="default"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hkb-pZ-XyH"/>
+                                            <action selector="printButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzg-Xz-ZJx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -74,8 +130,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w0N-Hc-vGs" secondAttribute="trailing" id="k0c-Ck-T9d"/>
                             <constraint firstItem="5yo-nm-4Al" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="k89-he-Hf8"/>
                             <constraint firstItem="5yo-nm-4Al" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="kxa-mp-Z9n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7gd-1L-Ka1" secondAttribute="trailing" id="paZ-me-lbl"/>
                             <constraint firstItem="wuV-if-MJb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sxb-E3-hhy"/>
                             <constraint firstItem="w0N-Hc-vGs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wc6-ma-c6B"/>
+                            <constraint firstItem="7gd-1L-Ka1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xOF-Ll-geV"/>
                         </constraints>
                     </view>
                     <connections>
@@ -91,6 +149,9 @@
     </scenes>
     <resources>
         <image name="location" catalog="system" width="128" height="121"/>
+        <image name="pause.fill" catalog="system" width="117" height="128"/>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
+        <image name="printer.fill" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -8,12 +8,16 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Combine
+
 import RealmSwift
 
 class ViewController: UIViewController {
     var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
-    var totalSpeeds: [Double]!
+    @Published var logOfSpeed: [Double]!
+    var currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
+    var subscriptions = Set<AnyCancellable>()
 
     @IBOutlet weak var speedLabel: UILabel!
 
@@ -26,14 +30,57 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         mapView.showsUserLocation = true
-        setUserTrackingMode()
         mapView.delegate = self
-        totalSpeeds = []
+        logOfSpeed = []
+        bind()
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.allowsBackgroundLocationUpdates = true
+    }
+
+    private func bind() {
+        currentSpeed
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] speed in
+                self.speedLabel.text = "\(speed)"
+                logOfSpeed.append(speed)
+            }.store(in: &subscriptions)
+
+        $logOfSpeed
+            .receive(on: DispatchQueue.global())
+            .compactMap { $0 }
+            .map { $0.filter { $0 > 0 } }
+            .map { items -> Double in
+                let count = Double(items.count)
+                let averageSpeed = items.reduce(0.0, +) / count
+                return round(averageSpeed * 10) / 10
+            }
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] averageSpeed in
+                self.averageSpeedLabel.text = "\(averageSpeed)"
+            }.store(in: &subscriptions)
+    }
+
+    private func stopTracking() {
+        locationManager.stopUpdatingLocation()
+    }
+
+    private func startTracking() {
+        locationManager.startUpdatingLocation()
     }
 
     //현재 위치로 이동
     @IBAction func locationButton(_ sender: Any) {
         setUserTrackingMode()
+    }
+    @IBAction func startTrackingButtonTapped(_ sender: Any) {
+        startTracking()
+    }
+    @IBAction func stopTrackingButtonTapped(_ sender: Any) {
+        stopTracking()
+    }
+    @IBAction func printButtonTapped(_ sender: Any) {
+        guard let logOfSpeed else { return }
+        print(logOfSpeed)
     }
 
     private func setUserTrackingMode() {
@@ -42,11 +89,11 @@ class ViewController: UIViewController {
         }
     }
 
-    func getLocationUsagePermission() {
+    private func getLocationUsagePermission() {
         locationManager.requestWhenInUseAuthorization()
     }
 
-    func showLocationDisabledAlert() {
+    private func showLocationDisabledAlert() {
         let alert = UIAlertController(title: "Location Access Disabled",
                                       message: "In order to measure speed we need your location",
                                       preferredStyle: .alert)
@@ -71,6 +118,8 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         guard let location = locations.last else { return }
+
+        // 이동한 경로를 선으로 그려줌
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
 
@@ -84,38 +133,27 @@ extension ViewController: CLLocationManagerDelegate {
             mapView.addOverlay(lineDraw)
         }
 
-        let speed = location.speed
-        let speedInKmH = max(speed * 3.6, 0)
-
-        print(speedInKmH)
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.speedLabel.text = "\(Int(speedInKmH))"
-            if speedInKmH > 0 {
-                self.totalSpeeds.append(speedInKmH)
-            }
-            if self.totalSpeeds.count > 0 {
-                self.averageSpeedLabel.text = "\(Int(self.totalSpeeds.reduce(0, +)) / self.totalSpeeds.count)"
-            }
-        }
         previousCoordinate = location.coordinate
+
+        // 현재 속도를 알려줌
+        let speed = location.speed
+        let speedInMS = max(speed, 0)
+        let speedInKmH = (round(max(speed * 3.6, 0) * 10)) / 10 // speed가 음수면 잘못된 speed이다.
+
+        currentSpeed.send(speedInKmH)
+        print("M/S speed: \(speedInMS)")
+        print("KM/H Speed: \(speedInKmH)")
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
             mapView.setUserTrackingMode(.follow, animated: true)
-            break
-
+            startTracking()
         case .restricted, .denied:
             showLocationDisabledAlert()
-
         case .notDetermined:
             getLocationUsagePermission()
-            break
-
         default:
             break
         }
@@ -141,12 +179,6 @@ extension ViewController: MKMapViewDelegate {
     }
 }
 
-/// FIX: 현재 속도는 그럭저럭 비슷하게 나온다.
-/// 하지만 평균 속도를 구하는 방법이 잘못됐다.
-/// 현재는, 0이상의 count되는 속도만 count수로 나눈다.
-/// 해결책1:
-/// didUpdateLocation이 움직임을 측정해서 count가 시작이 되면,
-/// 타이머를 가동하여 1초마다 측정된 속도를 집계해서 배열에 넣는다.
-/// 시작이 된 시간을 집계해서 속도를 다 더하고 나눈다.
+///Feat: 자동시작, 자동 멈춤
 ///
-
+///
