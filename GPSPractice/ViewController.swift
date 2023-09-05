@@ -15,7 +15,9 @@ import RealmSwift
 class ViewController: UIViewController {
     var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
+    var previousLocation: CLLocation?
     @Published var logOfSpeed: [Double]!
+    @Published var totalDistance: CLLocationDistance = 0
     var currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
     var subscriptions = Set<AnyCancellable>()
 
@@ -24,6 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var totalDistanceLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,7 @@ class ViewController: UIViewController {
         bind()
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 
     private func bind() {
@@ -43,6 +47,7 @@ class ViewController: UIViewController {
             .sink { [unowned self] speed in
                 self.speedLabel.text = "\(speed)"
                 logOfSpeed.append(speed)
+                print("currentSpeed: \(speed)km/h")
             }.store(in: &subscriptions)
 
         $logOfSpeed
@@ -57,6 +62,26 @@ class ViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [unowned self] averageSpeed in
                 self.averageSpeedLabel.text = "\(averageSpeed)"
+            }.store(in: &subscriptions)
+
+        $totalDistance
+            .receive(on: DispatchQueue.global())
+            .map { round($0 * 10) / 10 } // 0.1m
+            .map {
+                switch $0 {
+                case 0..<1:
+                    return "\($0)M"
+                case 1..<1000:
+                    return "\(Int(round($0)))M"
+                case 1000...:
+                    return "\(round($0 / 100) / 10)Km"
+                default:
+                    return "default"
+                }
+            }
+            .receive(on: RunLoop.main)
+            .sink { distance in
+                self.totalDistanceLabel.text = distance
             }.store(in: &subscriptions)
     }
 
@@ -135,14 +160,22 @@ extension ViewController: CLLocationManagerDelegate {
 
         previousCoordinate = location.coordinate
 
+        if let previousLocation = self.previousLocation {
+            let distance = location.distance(from: previousLocation)
+            self.totalDistance += distance
+        }
+
+        previousLocation = location
+
+
+
         // 현재 속도를 알려줌
         let speed = location.speed
-        let speedInMS = max(speed, 0)
         let speedInKmH = (round(max(speed * 3.6, 0) * 10)) / 10 // speed가 음수면 잘못된 speed이다.
 
         currentSpeed.send(speedInKmH)
-        print("M/S speed: \(speedInMS)")
-        print("KM/H Speed: \(speedInKmH)")
+
+
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -178,7 +211,3 @@ extension ViewController: MKMapViewDelegate {
         return renderer
     }
 }
-
-///Feat: 자동시작, 자동 멈춤
-///
-///
