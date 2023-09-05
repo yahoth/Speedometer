@@ -39,13 +39,14 @@ class ViewController: UIViewController {
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.distanceFilter = 2
     }
 
     private func bind() {
         currentSpeed
             .receive(on: RunLoop.main)
             .sink { [unowned self] speed in
-                self.speedLabel.text = "\(speed)"
+                self.speedLabel.text = speed == 0.0 ? "0" : "\(speed)"
                 logOfSpeed.append(speed)
                 print("currentSpeed: \(speed)km/h")
             }.store(in: &subscriptions)
@@ -61,7 +62,7 @@ class ViewController: UIViewController {
             }
             .receive(on: RunLoop.main)
             .sink { [unowned self] averageSpeed in
-                self.averageSpeedLabel.text = "\(averageSpeed)"
+                self.averageSpeedLabel.text = averageSpeed.isNaN ? "0" : "\(averageSpeed)"
             }.store(in: &subscriptions)
 
         $totalDistance
@@ -144,45 +145,43 @@ extension ViewController: CLLocationManagerDelegate {
 
         guard let location = locations.last else { return }
 
-        // 이동한 경로를 선으로 그려줌
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-
-        if let previousCoordinate = self.previousCoordinate {
-            var points: [CLLocationCoordinate2D] = []
-            let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
-            let point2: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-            points.append(point1)
-            points.append(point2)
-            let lineDraw = MKPolyline(coordinates: points, count: points.count)
-            mapView.addOverlay(lineDraw)
-        }
-
-        previousCoordinate = location.coordinate
-
-        if let previousLocation = self.previousLocation {
-            let distance = location.distance(from: previousLocation)
-            self.totalDistance += distance
-        }
-
-        previousLocation = location
-
-
-
-        // 현재 속도를 알려줌
+        // 현재 이동 속도 기록
         let speed = location.speed
         let speedInKmH = (round(max(speed * 3.6, 0) * 10)) / 10 // speed가 음수면 잘못된 speed이다.
 
         currentSpeed.send(speedInKmH)
 
+        if speed > 0 {
+            // 이동한 경로를 polyline으로 기록
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
 
+            if let previousCoordinate = self.previousCoordinate {
+                var points: [CLLocationCoordinate2D] = []
+                let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
+                let point2: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+                points.append(point1)
+                points.append(point2)
+                let lineDraw = MKPolyline(coordinates: points, count: points.count)
+                mapView.addOverlay(lineDraw)
+            }
+
+            previousCoordinate = location.coordinate
+
+            // 이동한 거리를 기록
+            if let previousLocation = self.previousLocation {
+                let distance = location.distance(from: previousLocation)
+                self.totalDistance += distance
+            }
+            previousLocation = location
+        }
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             mapView.setUserTrackingMode(.follow, animated: true)
-            startTracking()
+            break
         case .restricted, .denied:
             showLocationDisabledAlert()
         case .notDetermined:
