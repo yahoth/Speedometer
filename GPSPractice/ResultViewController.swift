@@ -17,7 +17,11 @@ class ResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configure()
     }
 
+    private func configure() {
+        averageSpeedLabel.text = "\(String(describing: averageSpeed))"
+        totalDistanceLabel.text = "\(String(describing: totalDistance))"
+    }
 }

@@ -18,6 +18,7 @@
 		76E9E30B2AA76E400072FA48 /* Result.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E9E30A2AA76E400072FA48 /* Result.storyboard */; };
 		76E9E30D2AA76EF00072FA48 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */; };
 		76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30E2AA862300072FA48 /* LocationManager.swift */; };
+		76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3102AA87F620072FA48 /* Stopwatch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		76E9E30A2AA76E400072FA48 /* Result.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Result.storyboard; sourceTree = "<group>"; };
 		76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		76E9E30E2AA862300072FA48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		76E9E3102AA87F620072FA48 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */,
 				764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */,
 				764FD7082AA49BE000C4ECF1 /* ViewController.swift */,
+				76E9E3102AA87F620072FA48 /* Stopwatch.swift */,
 				76E9E30E2AA862300072FA48 /* LocationManager.swift */,
 				764FD70A2AA49BE000C4ECF1 /* Main.storyboard */,
 				76E9E30A2AA76E400072FA48 /* Result.storyboard */,
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				764FD7092AA49BE000C4ECF1 /* ViewController.swift in Sources */,
+				76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */,
 				764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,

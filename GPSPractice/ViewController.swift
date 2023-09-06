@@ -16,9 +16,10 @@ class ViewController: UIViewController {
     var previousLocation: CLLocation?
     @Published var logOfSpeed: [Double]!
     @Published var totalDistance: CLLocationDistance = 0
-    var currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
+    let currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
     var averageSpeed: Double = 0
     var tempTotalDistance: Double = 0
+    var topSpeed: Double = 0
     var subscriptions = Set<AnyCancellable>()
 
     @IBOutlet weak var speedLabel: UILabel!
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var averageSpeedLabel: UILabel!
     @IBOutlet weak var totalDistanceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UITextField!
+
+    let stopwatch = Stopwatch()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +71,6 @@ class ViewController: UIViewController {
             }.store(in: &subscriptions)
 
         $totalDistance
-            .receive(on: DispatchQueue.global())
             .receive(on: RunLoop.main)
             .sink { [unowned self] distance in
                 switch distance {
@@ -80,14 +83,29 @@ class ViewController: UIViewController {
                 }
                 self.tempTotalDistance = distance
             }.store(in: &subscriptions)
+        
+        stopwatch.$totalElapsedTime
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] time in
+                let hours = time / 3600
+                let minutes = (time % 3600) / 60
+                let seconds = (time % 3600) % 60
+
+                self.timeLabel.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            }.store(in: &subscriptions)
+    }
+
+    private func trackingStart() {
     }
 
     private func stopTracking() {
         locationManager.stopUpdatingLocation()
+        stopwatch.pause()
     }
 
     private func startTracking() {
         locationManager.startUpdatingLocation()
+        stopwatch.start()
     }
 
     //현재 위치로 이동
@@ -106,12 +124,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func finishButtonTapped(_ sender: Any) {
+        locationManager.stopUpdatingLocation()
+        stopwatch.stop()
         let sb = UIStoryboard(name: "Result", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         vc.averageSpeed = averageSpeed
         vc.totalDistance = tempTotalDistance
         present(vc, animated: true)
-        stopTracking()
     }
 
     private func setUserTrackingMode() {
@@ -207,10 +226,11 @@ extension ViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         let renderer = MKPolylineRenderer(polyline: polyLine)
-        renderer.strokeColor = .blue
-        renderer.lineWidth = 8.0
+        let hue = CGFloat(100 - Int(self.currentSpeed.value))
+        renderer.lineWidth = 5.0
         renderer.alpha = 1.0
 
+        print(hue)
         return renderer
     }
 }

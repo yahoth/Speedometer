@@ -142,13 +142,21 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="time" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HKi-g8-XIk">
+                                <rect key="frame" x="217" y="115" width="176" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="HKi-g8-XIk" firstAttribute="trailing" secondItem="7gd-1L-Ka1" secondAttribute="trailing" id="4ca-L7-aAB"/>
+                            <constraint firstItem="HKi-g8-XIk" firstAttribute="top" secondItem="7gd-1L-Ka1" secondAttribute="bottom" constant="12" id="4f2-rq-Qa5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wuV-if-MJb" secondAttribute="bottom" constant="75" id="8dS-kl-tAj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w0N-Hc-vGs" secondAttribute="bottom" id="Ln0-0S-qb1"/>
                             <constraint firstItem="w0N-Hc-vGs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lxn-BV-Za6"/>
+                            <constraint firstItem="HKi-g8-XIk" firstAttribute="leading" secondItem="7gd-1L-Ka1" secondAttribute="leading" id="Rib-QZ-Ipf"/>
                             <constraint firstItem="wuV-if-MJb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jyi-42-CAp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w0N-Hc-vGs" secondAttribute="trailing" id="k0c-Ck-T9d"/>
                             <constraint firstItem="5yo-nm-4Al" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="k89-he-Hf8"/>
@@ -163,12 +171,13 @@
                         <outlet property="averageSpeedLabel" destination="u5k-cQ-SC5" id="dmD-Ko-Jb9"/>
                         <outlet property="mapView" destination="w0N-Hc-vGs" id="beG-Aa-esp"/>
                         <outlet property="speedLabel" destination="j6q-9C-Vhf" id="fk6-Fn-2CD"/>
+                        <outlet property="timeLabel" destination="HKi-g8-XIk" id="zfu-7n-bFO"/>
                         <outlet property="totalDistanceLabel" destination="Ecm-A8-32h" id="O9M-Am-2pb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-86.25954198473282" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-367" y="-13"/>
         </scene>
     </scenes>
     <resources>
