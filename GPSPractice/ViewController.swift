@@ -10,8 +10,6 @@ import CoreLocation
 import MapKit
 import Combine
 
-import RealmSwift
-
 class ViewController: UIViewController {
     var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
@@ -19,6 +17,8 @@ class ViewController: UIViewController {
     @Published var logOfSpeed: [Double]!
     @Published var totalDistance: CLLocationDistance = 0
     var currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
+    var averageSpeed: Double = 0
+    var tempTotalDistance: Double = 0
     var subscriptions = Set<AnyCancellable>()
 
     @IBOutlet weak var speedLabel: UILabel!
@@ -38,12 +38,12 @@ class ViewController: UIViewController {
         bind()
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.distanceFilter = 2
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
 
     private func bind() {
         currentSpeed
+            .map { round($0 * 10) / 10 }
             .receive(on: RunLoop.main)
             .sink { [unowned self] speed in
                 self.speedLabel.text = speed == 0.0 ? "0" : "\(speed)"
@@ -63,26 +63,22 @@ class ViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [unowned self] averageSpeed in
                 self.averageSpeedLabel.text = averageSpeed.isNaN ? "0" : "\(averageSpeed)"
+                self.averageSpeed = averageSpeed
             }.store(in: &subscriptions)
 
         $totalDistance
             .receive(on: DispatchQueue.global())
-            .map { round($0 * 10) / 10 } // 0.1m
-            .map {
-                switch $0 {
-                case 0..<1:
-                    return "\($0)M"
-                case 1..<1000:
-                    return "\(Int(round($0)))M"
-                case 1000...:
-                    return "\(round($0 / 100) / 10)Km"
-                default:
-                    return "default"
-                }
-            }
             .receive(on: RunLoop.main)
-            .sink { distance in
-                self.totalDistanceLabel.text = distance
+            .sink { [unowned self] distance in
+                switch distance {
+                case 0..<1000:
+                    self.totalDistanceLabel.text = "\(Int(round(distance)))M"
+                case 1000...:
+                    self.totalDistanceLabel.text = "\((round(distance / 10) / 100))KM"
+                default:
+                    break
+                }
+                self.tempTotalDistance = distance
             }.store(in: &subscriptions)
     }
 
@@ -109,9 +105,18 @@ class ViewController: UIViewController {
         print(logOfSpeed)
     }
 
+    @IBAction func finishButtonTapped(_ sender: Any) {
+        let sb = UIStoryboard(name: "Result", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        vc.averageSpeed = averageSpeed
+        vc.totalDistance = tempTotalDistance
+        present(vc, animated: true)
+        stopTracking()
+    }
+
     private func setUserTrackingMode() {
         if locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways {
-            mapView.setUserTrackingMode(.follow, animated: true)
+            mapView.setUserTrackingMode(.followWithHeading, animated: true)
         }
     }
 
@@ -147,9 +152,8 @@ extension ViewController: CLLocationManagerDelegate {
 
         // 현재 이동 속도 기록
         let speed = location.speed
-        let speedInKmH = (round(max(speed * 3.6, 0) * 10)) / 10 // speed가 음수면 잘못된 speed이다.
-
-        currentSpeed.send(speedInKmH)
+        let speedInMH = max(speed * 3.6, 0)
+        currentSpeed.send(speedInMH)
 
         if speed > 0 {
             // 이동한 경로를 polyline으로 기록
@@ -180,7 +184,7 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            mapView.setUserTrackingMode(.follow, animated: true)
+            mapView.setUserTrackingMode(.followWithHeading, animated: true)
             break
         case .restricted, .denied:
             showLocationDisabledAlert()

@@ -74,7 +74,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gd-1L-Ka1">
-                                <rect key="frame" x="261" y="59" width="132" height="44"/>
+                                <rect key="frame" x="217" y="59" width="176" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Md1-pz-ghj">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -89,7 +89,6 @@
                                             <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wca-Ld-6L5"/>
                                             <action selector="startTrackingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaD-gC-rHb"/>
                                         </connections>
                                     </button>
@@ -106,16 +105,31 @@
                                             <imageReference key="image" image="pause.fill" catalog="system" symbolScale="default"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mej-2z-0J6"/>
                                             <action selector="stopTrackingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BW9-dC-umk"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vD-PU-VPE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfT-Am-BAw">
                                         <rect key="frame" x="88" y="0.0" width="44" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="JpL-gh-ZHK"/>
-                                            <constraint firstAttribute="height" constant="44" id="fF3-s9-b4X"/>
+                                            <constraint firstAttribute="width" constant="44" id="A5C-KQ-M2a"/>
+                                            <constraint firstAttribute="height" constant="44" id="vp2-ed-6Pe"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="stop.fill" catalog="system" symbolScale="default"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="finishButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aJw-A4-2wv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRa-vh-l5b">
+                                        <rect key="frame" x="132" y="0.0" width="44" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Nud-7C-Prj"/>
+                                            <constraint firstAttribute="width" constant="44" id="OYG-9J-c2L"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -123,8 +137,7 @@
                                             <imageReference key="image" image="printer.fill" catalog="system" symbolScale="default"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hkb-pZ-XyH"/>
-                                            <action selector="printButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzg-Xz-ZJx"/>
+                                            <action selector="printButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o5T-pe-mcH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -163,6 +176,7 @@
         <image name="pause.fill" catalog="system" width="117" height="128"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
         <image name="printer.fill" catalog="system" width="128" height="112"/>
+        <image name="stop.fill" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

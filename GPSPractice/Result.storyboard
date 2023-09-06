@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Result View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ResultViewController" id="Y6W-OH-hqX" customClass="ResultViewController" customModule="GPSPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 속도:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95G-zS-wOI">
+                                <rect key="frame" x="47" y="164" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이동 거리:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVG-7i-L4Z">
+                                <rect key="frame" x="47" y="188.66666666666666" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VP1-VK-Dxq">
+                                <rect key="frame" x="146" y="164" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYh-id-2ba">
+                                <rect key="frame" x="146" y="188.66666666666666" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RYh-id-2ba" firstAttribute="leading" secondItem="EVG-7i-L4Z" secondAttribute="trailing" constant="31" id="6lZ-IW-cuW"/>
+                            <constraint firstItem="95G-zS-wOI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="105" id="AQg-ZF-Kn4"/>
+                            <constraint firstItem="95G-zS-wOI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="47" id="S9x-HH-YU4"/>
+                            <constraint firstItem="VP1-VK-Dxq" firstAttribute="top" secondItem="95G-zS-wOI" secondAttribute="top" id="Tjo-mP-D7Q"/>
+                            <constraint firstItem="EVG-7i-L4Z" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="47" id="cdo-Cd-njO"/>
+                            <constraint firstItem="VP1-VK-Dxq" firstAttribute="leading" secondItem="95G-zS-wOI" secondAttribute="trailing" constant="31" id="dZ4-a9-Oeb"/>
+                            <constraint firstItem="EVG-7i-L4Z" firstAttribute="top" secondItem="95G-zS-wOI" secondAttribute="bottom" constant="3.6666666666666572" id="l1j-lK-SX9"/>
+                            <constraint firstItem="RYh-id-2ba" firstAttribute="top" secondItem="EVG-7i-L4Z" secondAttribute="top" id="yeY-4M-YCJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="averageSpeedLabel" destination="VP1-VK-Dxq" id="wGJ-xE-WIp"/>
+                        <outlet property="totalDistanceLabel" destination="RYh-id-2ba" id="TLr-VW-WC2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43.511450381679388" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
