@@ -19,6 +19,8 @@
 		76E9E30D2AA76EF00072FA48 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */; };
 		76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30E2AA862300072FA48 /* LocationManager.swift */; };
 		76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3102AA87F620072FA48 /* Stopwatch.swift */; };
+		76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */; };
+		76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		76E9E30E2AA862300072FA48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		76E9E3102AA87F620072FA48 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
+		76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + interpolate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 				764FD70A2AA49BE000C4ECF1 /* Main.storyboard */,
 				76E9E30A2AA76E400072FA48 /* Result.storyboard */,
 				76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */,
+				76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */,
+				76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */,
 				764FD70D2AA49BE100C4ECF1 /* Assets.xcassets */,
 				764FD70F2AA49BE100C4ECF1 /* LaunchScreen.storyboard */,
 				764FD7122AA49BE100C4ECF1 /* Info.plist */,
@@ -166,6 +172,8 @@
 				76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */,
 				764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */,
+				76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */,
+				76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,
 				76E9E30D2AA76EF00072FA48 /* ResultViewController.swift in Sources */,
 			);

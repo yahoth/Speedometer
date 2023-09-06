@@ -226,11 +226,37 @@ extension ViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         let renderer = MKPolylineRenderer(polyline: polyLine)
-        let hue = CGFloat(100 - Int(self.currentSpeed.value))
-        renderer.lineWidth = 5.0
-        renderer.alpha = 1.0
 
-        print(hue)
+        let green = UIColor(hex: "51E101")
+        let yellow = UIColor(hex: "FFFF00")
+        let orange = UIColor(hex: "FFA500")
+        let red = UIColor(hex: "E00000")
+
+        var rendererColor = green
+
+        if self.currentSpeed.value >= 10 && self.currentSpeed.value <= 40 {
+            // Calculate the percentage of current speed within the range [10, 40]
+            let percentage = (self.currentSpeed.value - 10) / (40 - 10)
+
+            if percentage < 0.5 {
+                // Interpolate between green and yellow
+                rendererColor = UIColor.interpolateColor(from: green, to: yellow, with: percentage * 2)
+            } else {
+                // Interpolate between yellow and orange
+                rendererColor = UIColor.interpolateColor(from: yellow, to: orange, with:(percentage - 0.5) * 2)
+            }
+            // Set the stroke color of the renderer
+            renderer.strokeColor = rendererColor
+        } else if self.currentSpeed.value > 40 {
+            // If speed is more than the maximum speed considered (40km/h), set the color to red.
+            renderer.strokeColor = red
+        } else{
+            // If speed is less than the minimum speed considered (10km/h), set the color to green.
+            renderer.strokeColor = green
+        }
+       renderer.lineWidth = 5.0
+       renderer.alpha = 1.0
         return renderer
     }
 }
+

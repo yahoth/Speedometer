@@ -12,6 +12,8 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var averageSpeedLabel: UILabel!
     @IBOutlet weak var totalDistanceLabel: UILabel!
 
+    @IBOutlet weak var colorLabel: UILabel!
+
     var averageSpeed: Double!
     var totalDistance: Double!
 
@@ -23,5 +25,6 @@ class ResultViewController: UIViewController {
     private func configure() {
         averageSpeedLabel.text = "\(String(describing: averageSpeed))"
         totalDistanceLabel.text = "\(String(describing: totalDistance))"
+        colorLabel.backgroundColor = UIColor(hex: "30611D")
     }
 }
