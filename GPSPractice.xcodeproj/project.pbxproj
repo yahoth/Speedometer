@@ -7,34 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */; };
+		760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4812AAA012900E1E183 /* StatisticsViewController.swift */; };
+		760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4832AAA014100E1E183 /* SettingViewController.swift */; };
+		760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4852AAA015D00E1E183 /* HomeViewController.swift */; };
+		760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */; };
+		760CA48C2AAB332000E1E183 /* SpeedometerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA48B2AAB332000E1E183 /* SpeedometerNavigationController.swift */; };
 		764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */; };
 		764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */; };
-		764FD7092AA49BE000C4ECF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7082AA49BE000C4ECF1 /* ViewController.swift */; };
+		764FD7092AA49BE000C4ECF1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7082AA49BE000C4ECF1 /* MainViewController.swift */; };
 		764FD70C2AA49BE000C4ECF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764FD70A2AA49BE000C4ECF1 /* Main.storyboard */; };
 		764FD70E2AA49BE100C4ECF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764FD70D2AA49BE100C4ECF1 /* Assets.xcassets */; };
 		764FD7112AA49BE100C4ECF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764FD70F2AA49BE100C4ECF1 /* LaunchScreen.storyboard */; };
 		764FD71A2AA4A48500C4ECF1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 764FD7192AA4A48500C4ECF1 /* Realm */; };
 		764FD71C2AA4A48500C4ECF1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 764FD71B2AA4A48500C4ECF1 /* RealmSwift */; };
+		76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */; };
+		76DC3A6D2AA9EF9400066052 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6C2AA9EF9400066052 /* Home.storyboard */; };
+		76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */; };
 		76E9E30B2AA76E400072FA48 /* Result.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E9E30A2AA76E400072FA48 /* Result.storyboard */; };
 		76E9E30D2AA76EF00072FA48 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */; };
-		76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30E2AA862300072FA48 /* LocationManager.swift */; };
+		76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30E2AA862300072FA48 /* LocationPublisher.swift */; };
 		76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3102AA87F620072FA48 /* Stopwatch.swift */; };
 		76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */; };
 		76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewController.swift; sourceTree = "<group>"; };
+		760CA4812AAA012900E1E183 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		760CA4832AAA014100E1E183 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		760CA4852AAA015D00E1E183 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewModel.swift; sourceTree = "<group>"; };
+		760CA48B2AAB332000E1E183 /* SpeedometerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerNavigationController.swift; sourceTree = "<group>"; };
 		764FD7012AA49BE000C4ECF1 /* GPSPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		764FD7082AA49BE000C4ECF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		764FD7082AA49BE000C4ECF1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		764FD70B2AA49BE000C4ECF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		764FD70D2AA49BE100C4ECF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		764FD7102AA49BE100C4ECF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		764FD7122AA49BE100C4ECF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		76DC3A6C2AA9EF9400066052 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Speedometer.storyboard; sourceTree = "<group>"; };
 		76E9E30A2AA76E400072FA48 /* Result.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Result.storyboard; sourceTree = "<group>"; };
 		76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		76E9E30E2AA862300072FA48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		76E9E30E2AA862300072FA48 /* LocationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPublisher.swift; sourceTree = "<group>"; };
 		76E9E3102AA87F620072FA48 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + interpolate.swift"; sourceTree = "<group>"; };
@@ -74,19 +92,76 @@
 			children = (
 				764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */,
 				764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */,
-				764FD7082AA49BE000C4ECF1 /* ViewController.swift */,
-				76E9E3102AA87F620072FA48 /* Stopwatch.swift */,
-				76E9E30E2AA862300072FA48 /* LocationManager.swift */,
-				764FD70A2AA49BE000C4ECF1 /* Main.storyboard */,
-				76E9E30A2AA76E400072FA48 /* Result.storyboard */,
-				76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */,
-				76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */,
-				76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */,
+				76E9E3182AA8D2900072FA48 /* Models */,
+				76E9E3172AA8D28A0072FA48 /* Views */,
+				76E9E3162AA8D2820072FA48 /* ViewModels */,
+				76E9E3192AA8D2B10072FA48 /* Extensions */,
+				76E9E31A2AA8D3270072FA48 /* Utility */,
+				76E9E31B2AA8D3710072FA48 /* Manager */,
 				764FD70D2AA49BE100C4ECF1 /* Assets.xcassets */,
 				764FD70F2AA49BE100C4ECF1 /* LaunchScreen.storyboard */,
 				764FD7122AA49BE100C4ECF1 /* Info.plist */,
 			);
 			path = GPSPractice;
+			sourceTree = "<group>";
+		};
+		76E9E3162AA8D2820072FA48 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		76E9E3172AA8D28A0072FA48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				764FD70A2AA49BE000C4ECF1 /* Main.storyboard */,
+				764FD7082AA49BE000C4ECF1 /* MainViewController.swift */,
+				76E9E30A2AA76E400072FA48 /* Result.storyboard */,
+				76E9E30C2AA76EF00072FA48 /* ResultViewController.swift */,
+				76DC3A6C2AA9EF9400066052 /* Home.storyboard */,
+				760CA4852AAA015D00E1E183 /* HomeViewController.swift */,
+				760CA4832AAA014100E1E183 /* SettingViewController.swift */,
+				760CA4812AAA012900E1E183 /* StatisticsViewController.swift */,
+				76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */,
+				760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */,
+				760CA48B2AAB332000E1E183 /* SpeedometerNavigationController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		76E9E3182AA8D2900072FA48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		76E9E3192AA8D2B10072FA48 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */,
+				76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		76E9E31A2AA8D3270072FA48 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				76E9E3102AA87F620072FA48 /* Stopwatch.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		76E9E31B2AA8D3710072FA48 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				76E9E30E2AA862300072FA48 /* LocationPublisher.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,8 +230,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				764FD7112AA49BE100C4ECF1 /* LaunchScreen.storyboard in Resources */,
+				76DC3A6D2AA9EF9400066052 /* Home.storyboard in Resources */,
 				764FD70E2AA49BE100C4ECF1 /* Assets.xcassets in Resources */,
 				764FD70C2AA49BE000C4ECF1 /* Main.storyboard in Resources */,
+				76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */,
 				76E9E30B2AA76E400072FA48 /* Result.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,14 +245,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				764FD7092AA49BE000C4ECF1 /* ViewController.swift in Sources */,
+				764FD7092AA49BE000C4ECF1 /* MainViewController.swift in Sources */,
+				760CA48C2AAB332000E1E183 /* SpeedometerNavigationController.swift in Sources */,
+				76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */,
 				76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */,
 				764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */,
-				76E9E30F2AA862300072FA48 /* LocationManager.swift in Sources */,
+				760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */,
+				760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */,
+				760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */,
+				76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */,
 				76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */,
 				76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,
+				760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */,
 				76E9E30D2AA76EF00072FA48 /* ResultViewController.swift in Sources */,
+				760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +413,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -359,7 +443,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 사용자의 위치에 접근하도록 허용합니다. 허용하지 않을 경우 위치 관련 서비스를 이용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

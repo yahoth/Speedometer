@@ -10,8 +10,8 @@ import CoreLocation
 import MapKit
 import Combine
 
-class ViewController: UIViewController {
-    var locationManager: CLLocationManager!
+class MainViewController: UIViewController {
+//    var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
     var previousLocation: CLLocation?
     @Published var logOfSpeed: [Double]!
@@ -20,7 +20,10 @@ class ViewController: UIViewController {
     var averageSpeed: Double = 0
     var tempTotalDistance: Double = 0
     var topSpeed: Double = 0
+    var allCoordinates: [CLLocationCoordinate2D] = []
     var subscriptions = Set<AnyCancellable>()
+
+    let locationManager = LocationPublisher()
 
     @IBOutlet weak var speedLabel: UILabel!
 
@@ -34,15 +37,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
         mapView.showsUserLocation = true
         mapView.delegate = self
         logOfSpeed = []
         bind()
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
 
     private func bind() {
@@ -95,8 +93,6 @@ class ViewController: UIViewController {
             }.store(in: &subscriptions)
     }
 
-    private func trackingStart() {
-    }
 
     private func stopTracking() {
         locationManager.stopUpdatingLocation()
@@ -128,8 +124,7 @@ class ViewController: UIViewController {
         stopwatch.stop()
         let sb = UIStoryboard(name: "Result", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-        vc.averageSpeed = averageSpeed
-        vc.totalDistance = tempTotalDistance
+        vc.allCoordinates = allCoordinates
         present(vc, animated: true)
     }
 
@@ -162,7 +157,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension MainViewController: CLLocationManagerDelegate {
     //MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -176,15 +171,13 @@ extension ViewController: CLLocationManagerDelegate {
 
         if speed > 0 {
             // 이동한 경로를 polyline으로 기록
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-
             if let previousCoordinate = self.previousCoordinate {
                 var points: [CLLocationCoordinate2D] = []
-                let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
-                let point2: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+                let point1 = previousCoordinate
+                let point2 = location.coordinate
                 points.append(point1)
                 points.append(point2)
+                allCoordinates.append(point2)
                 let lineDraw = MKPolyline(coordinates: points, count: points.count)
                 mapView.addOverlay(lineDraw)
             }
@@ -195,6 +188,8 @@ extension ViewController: CLLocationManagerDelegate {
             if let previousLocation = self.previousLocation {
                 let distance = location.distance(from: previousLocation)
                 self.totalDistance += distance
+
+
             }
             previousLocation = location
         }
@@ -219,7 +214,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ViewController: MKMapViewDelegate {
+extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyLine = overlay as? MKPolyline else {
             print("can't draw polyline")
@@ -258,5 +253,6 @@ extension ViewController: MKMapViewDelegate {
        renderer.alpha = 1.0
         return renderer
     }
+
 }
 
