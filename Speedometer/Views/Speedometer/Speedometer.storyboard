@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wbh-Ib-ulh">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -11,16 +11,16 @@
         <!--Speedometer View Controller-->
         <scene sceneID="QvS-EV-o2j">
             <objects>
-                <viewController storyboardIdentifier="SpeedometerViewController" id="UCh-f3-qGX" customClass="SpeedometerViewController" customModule="GPSPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpeedometerViewController" id="UCh-f3-qGX" customClass="SpeedometerViewController" customModule="Speedometer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eLG-cE-17L">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-X3-Pcw">
-                                <rect key="frame" x="0.0" y="103" width="393" height="750"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-Bv-Y1v">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="265"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-gz-rvw">
                                                 <rect key="frame" x="9.9999999999999929" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
@@ -29,13 +29,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBu-0q-3Je">
-                                                <rect key="frame" x="10" y="0.0" width="373" height="300"/>
+                                                <rect key="frame" x="10" y="0.0" width="373" height="265"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="100"/>
                                                 <color key="textColor" red="0.01176470588" green="0.40000000000000002" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KM/H" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40B-SC-xUk">
-                                                <rect key="frame" x="340.66666666666669" y="269.66666666666669" width="42.333333333333314" height="20.333333333333314"/>
+                                                <rect key="frame" x="340.66666666666669" y="234.66666666666669" width="42.333333333333314" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2Fj-Ts-dwC">
-                                        <rect key="frame" x="0.0" y="300" width="393" height="150"/>
+                                        <rect key="frame" x="0.0" y="265" width="393" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHF-dQ-3gA">
                                                 <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="150"/>
@@ -127,7 +127,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2KI-SI-vIj">
-                                        <rect key="frame" x="0.0" y="450" width="393" height="150"/>
+                                        <rect key="frame" x="0.0" y="415" width="393" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ubd-g9-hhy">
                                                 <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="150"/>
@@ -183,7 +183,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZRO-9o-8dW">
-                                        <rect key="frame" x="0.0" y="600" width="393" height="150"/>
+                                        <rect key="frame" x="0.0" y="565" width="393" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPy-dJ-h6J">
                                                 <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="150"/>
@@ -264,25 +264,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Sc-bW-Jhk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791.60305343511448" y="1503.5211267605634"/>
+            <point key="canvasLocation" x="1718.3206106870227" y="1503.5211267605634"/>
         </scene>
         <!--Speedometer Navigation Controller-->
-        <scene sceneID="NLJ-cl-EST">
+        <scene sceneID="Uvf-fP-KTE">
             <objects>
-                <navigationController storyboardIdentifier="SpeedometerNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="GwF-x3-eDs" customClass="SpeedometerNavigationController" customModule="GPSPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SpeedometerNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="wbh-Ib-ulh" customClass="SpeedometerNavigationController" customModule="Speedometer" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OqM-OE-Xui">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QS-y4-KVk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="UCh-f3-qGX" kind="relationship" relationship="rootViewController" id="qmu-kJ-San"/>
+                        <segue destination="UCh-f3-qGX" kind="relationship" relationship="rootViewController" id="etf-e5-k5J"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dzw-Zb-mds" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bt5-DP-eFC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135.1145038167939" y="1503.5211267605634"/>
+            <point key="canvasLocation" x="791.60305343511448" y="1503.5211267605634"/>
         </scene>
     </scenes>
     <resources>

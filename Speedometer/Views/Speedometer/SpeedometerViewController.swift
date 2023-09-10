@@ -32,34 +32,29 @@ class SpeedometerViewController: UIViewController {
 
     }
     private func setupMenu() {
-        let start = UIAction(title: "start", image: UIImage(systemName: "play.fill"), handler: { _ in self.vm.startTracking() })
-        let pause = UIAction(title: "pause", image: UIImage(systemName: "pause.fill"), handler: { _ in self.vm.pauseTracking() })
-        let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { _ in
-            self.vm.stopTracking()
-            let sb = UIStoryboard(name: "Result", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-            vc.allCoordinates = self.vm.allCoordinates
-            self.navigationController?.pushViewController(vc, animated: true)
+        let start = UIAction(title: "start", image: UIImage(systemName: "play.fill"), handler: { [weak self] _ in self?.vm.startTracking() })
+        let pause = UIAction(title: "pause", image: UIImage(systemName: "pause.fill"), handler: { [weak self] _ in self?.vm.pauseTracking() })
+        let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { [weak self] _ in
+            self?.vm.stopTracking()
+            self?.vm.createSpeedometerResult()
+            let sb = UIStoryboard(name: "SpeedometerResultCompletion", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "SpeedometerResultCompletionViewController") as! SpeedometerResultCompletionViewController
+            vc.vm = self?.vm
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
 
         menuButton.menu = UIMenu(title: "hello", image: nil, identifier: nil, options: .displayInline, children: [start, pause, stop])
         menuButton.showsMenuAsPrimaryAction = true
     }
 
-    private func configureUI() {
-        
-    }
-
     private func bind() {
         vm.currentSpeed
-            .subscribe(on: DispatchQueue.global())
-            .map { round($0 * 10) / 10 }
             .receive(on: RunLoop.main)
             .sink { [unowned self] speed in
                 self.currentSpeedLabel.text = speed == 0.0 ? "0" : "\(speed)"
             }.store(in: &subscriptions)
 
-        vm.averageSpeedPublisher
+        vm.$averageSpeed
             .receive(on: RunLoop.main)
             .sink { [unowned self ] averageSpeed in
                 self.averageSpeedLabel.text = averageSpeed.isNaN ? "0" : "\(averageSpeed)"
@@ -78,15 +73,16 @@ class SpeedometerViewController: UIViewController {
                 }
             }.store(in: &subscriptions)
 
-        vm.topSpeed
+        vm.$topSpeed
             .receive(on: RunLoop.main)
             .sink { speed in
                 self.topSpeedLabel.text = "\(speed)"
             }.store(in: &subscriptions)
 
         vm.$alititude
+            .receive(on: RunLoop.main)
             .sink { altitude in
-                self.altitudeLabel.text = "\(altitude)M"
+                self.altitudeLabel.text = "\(round(altitude))M"
             }.store(in: &subscriptions)
 
         vm.stopwatch.$totalElapsedTime
@@ -100,11 +96,3 @@ class SpeedometerViewController: UIViewController {
             }.store(in: &subscriptions)
     }
 }
-
-//3분에 5.35 평속 약 100
-
-//거 속 시
-/// 거리 = 속 * 시
-/// 5.35 = 5초를 시간으로
-///
-///

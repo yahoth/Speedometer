@@ -1,8 +1,8 @@
 //
 //  SpeedometerNavigationController.swift
-//  GPSPractice
+//  Speedometer
 //
-//  Created by TAEHYOUNG KIM on 2023/09/08.
+//  Created by TAEHYOUNG KIM on 2023/09/10.
 //
 
 import UIKit

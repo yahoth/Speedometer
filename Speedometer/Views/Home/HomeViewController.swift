@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
 
     }
     @IBAction func startButtonTapped(_ sender: Any) {

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TestViewController.swift
 //  GPSPractice
 //
 //  Created by TAEHYOUNG KIM on 2023/09/03.
@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 import Combine
 
-class MainViewController: UIViewController {
+class TestViewController: UIViewController {
 //    var locationManager: CLLocationManager!
     var previousCoordinate: CLLocationCoordinate2D?
     var previousLocation: CLLocation?
@@ -122,8 +122,8 @@ class MainViewController: UIViewController {
     @IBAction func finishButtonTapped(_ sender: Any) {
         locationManager.stopUpdatingLocation()
         stopwatch.stop()
-        let sb = UIStoryboard(name: "Result", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        let sb = UIStoryboard(name: "TempResult", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "TempResultViewController") as! TempResultViewController
         vc.allCoordinates = allCoordinates
         present(vc, animated: true)
     }
@@ -157,7 +157,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: CLLocationManagerDelegate {
+extension TestViewController: CLLocationManagerDelegate {
     //MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -214,7 +214,7 @@ extension MainViewController: CLLocationManagerDelegate {
     }
 }
 
-extension MainViewController: MKMapViewDelegate {
+extension TestViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyLine = overlay as? MKPolyline else {
             print("can't draw polyline")

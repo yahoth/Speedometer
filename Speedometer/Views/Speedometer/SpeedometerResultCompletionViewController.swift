@@ -1,33 +1,44 @@
 //
-//  ResultViewController.swift
-//  GPSPractice
+//  SpeedometerResultCompletionViewController.swift
+//  Speedometer
 //
-//  Created by TAEHYOUNG KIM on 2023/09/05.
+//  Created by TAEHYOUNG KIM on 2023/09/10.
 //
 
 import UIKit
 import MapKit
 import Combine
 
-class ResultViewController: UIViewController {
+class SpeedometerResultCompletionViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    @Published var allCoordinates: [CLLocationCoordinate2D]!
-    @Published var span: MKCoordinateSpan = MKCoordinateSpan()
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var topSpeedLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
+    @IBOutlet weak var heartRateLabel: UILabel!
+
+    var vm: SpeedometerViewModel!
     var subscriptions = Set<AnyCancellable>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         mapView.delegate = self
         setRegion()
+        setNavigationBar()
     }
-    @IBAction func xButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true)
+
+    private func setNavigationBar() {
+//        self.navigationController?.navigationItem.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
+//        self.navigationItem.rightBarButtonItem = barButtonItem
     }
 
     private func setRegion() {
-        let latitudes = allCoordinates.map { $0.latitude }
-        let longitudes = allCoordinates.map { $0.longitude }
+        let latitudes = vm.allCoordinates.map { $0.latitude }
+        let longitudes = vm.allCoordinates.map { $0.longitude }
 
         let minLat = latitudes.min() ?? 0
         let maxLat = latitudes.max() ?? 0
@@ -35,26 +46,41 @@ class ResultViewController: UIViewController {
         let maxLon = longitudes.max() ?? 0
 
         let center = CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2)
-        self.span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3, longitudeDelta: (maxLon - minLon) * 1.3)
-
-        mapView.setRegion(MKCoordinateRegion(center: center, span: self.span), animated: true)
+        vm.span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3, longitudeDelta: (maxLon - minLon) * 1.3)
+        guard let span = vm.span else { return }
+        mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: true)
     }
 
     private func bind() {
-        $allCoordinates.receive(on: RunLoop.current)
+        vm.$allCoordinates
+            .receive(on: RunLoop.current)
             .sink { [unowned self] coordinates in
-                let lineDraw = MKPolyline(coordinates: self.allCoordinates, count: self.allCoordinates.count)
+                let lineDraw = MKPolyline(coordinates: vm.allCoordinates, count: vm.allCoordinates.count)
                 mapView.addOverlay(lineDraw)
             }.store(in: &subscriptions)
 
-        $span.receive(on: RunLoop.current)
+        vm.$span
+            .receive(on: RunLoop.current)
+            .compactMap { $0 }
             .sink { span in
                 self.addCircleOverlay(span: span)
+            }.store(in: &subscriptions)
+
+        vm.$speedometerResult
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] result in
+                guard let result else { return }
+                self.durationLabel.text = result.durationString
+                self.distanceLabel.text = result.distanceString
+                self.averageSpeedLabel.text = result.averageSpeedString
+                self.topSpeedLabel.text = "\(result.topSpeed)KM/H"
+                self.altitudeLabel.text = "\(result.altitude)M"
+                self.heartRateLabel.text = "0BPM"
             }.store(in: &subscriptions)
     }
 
     private func addCircleOverlay(span: MKCoordinateSpan) {
-        guard let startCoordinate = allCoordinates.first, let endCoordinate = allCoordinates.last else { return }
+        guard let startCoordinate = vm.allCoordinates.first, let endCoordinate = vm.allCoordinates.last else { return }
 
         let radius = span.latitudeDelta * 0.1 * 111000
 
@@ -68,7 +94,7 @@ class ResultViewController: UIViewController {
 
 }
 
-extension ResultViewController: MKMapViewDelegate {
+extension SpeedometerResultCompletionViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyLine = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyLine)
@@ -97,35 +123,4 @@ extension ResultViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
     }
-
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("region changed")
-    }
-//// CustomPin 생성
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard let annotation = annotation as? CustomAnnotation else { return nil }
-//
-//        let identifier = "CustomPin"
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-//
-//        if annotationView == nil {
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//
-//            if annotation.isStartPoint {
-//                let startImage = UIImage(named: "avocado")
-//                annotationView?.image = startImage
-//                annotationView?.frame.size = CGSize(width: 30, height: 30)
-////                imageView.frame.size =
-//
-//            } else {
-//                let endImage = UIImage(named: "avocado")
-//                annotationView?.image = endImage
-//            }
-//        } else {
-//            annotationView?.annotation = annotation
-//        }
-//
-//        return annotationView
-//    }
-
 }
