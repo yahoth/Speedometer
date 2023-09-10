@@ -35,6 +35,7 @@ class SpeedometerViewController: UIViewController {
         let start = UIAction(title: "start", image: UIImage(systemName: "play.fill"), handler: { _ in self.vm.startTracking() })
         let pause = UIAction(title: "pause", image: UIImage(systemName: "pause.fill"), handler: { _ in self.vm.pauseTracking() })
         let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { _ in
+            self.vm.stopTracking()
             let sb = UIStoryboard(name: "Result", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
             vc.allCoordinates = self.vm.allCoordinates
