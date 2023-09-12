@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Statistics-->
+        <scene sceneID="RO4-h9-CmQ">
+            <objects>
+                <viewController storyboardIdentifier="StatisticsViewController" id="uwk-G3-Suz" customClass="StatisticsViewController" customModule="Speedometer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RFV-0A-n6g">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sca-Cs-vV0">
+                                <rect key="frame" x="0.0" y="46" width="393" height="772"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vvy-Wt-BTS">
+                                    <size key="itemSize" width="393" height="214"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="StatisticsRowCell" reuseIdentifier="StatisticsRowCell" id="vaH-k7-PSi" customClass="StatisticsRowCell" customModule="Speedometer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="214"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t1J-8f-gif">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="214"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MW-ei-yRW">
+                                                    <rect key="frame" x="20.000000000000004" y="20" width="41.333333333333343" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ZU2-Ys-u8r"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rev-Pe-i2d">
+                                                    <rect key="frame" x="20" y="51" width="353" height="143"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16510423569999999" green="0.43492683529999998" blue="0.1795355048" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstItem="4MW-ei-yRW" firstAttribute="top" secondItem="t1J-8f-gif" secondAttribute="top" constant="20" id="Gpg-40-rrR"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4MW-ei-yRW" secondAttribute="trailing" constant="20" id="RrW-mw-r1u"/>
+                                                <constraint firstAttribute="bottom" secondItem="Rev-Pe-i2d" secondAttribute="bottom" constant="20" id="SNV-QC-igB"/>
+                                                <constraint firstItem="Rev-Pe-i2d" firstAttribute="leading" secondItem="t1J-8f-gif" secondAttribute="leading" constant="20" id="XCR-ik-lqJ"/>
+                                                <constraint firstItem="4MW-ei-yRW" firstAttribute="leading" secondItem="t1J-8f-gif" secondAttribute="leading" constant="20" id="ZKb-La-4sM"/>
+                                                <constraint firstItem="Rev-Pe-i2d" firstAttribute="centerX" secondItem="t1J-8f-gif" secondAttribute="centerX" id="hyq-kh-sHs"/>
+                                                <constraint firstItem="Rev-Pe-i2d" firstAttribute="top" secondItem="4MW-ei-yRW" secondAttribute="bottom" constant="10" id="qmP-6X-RI3"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="393" height="214"/>
+                                        <connections>
+                                            <outlet property="thumbnailImageView" destination="Rev-Pe-i2d" id="2gD-3C-j8o"/>
+                                            <outlet property="titleLabel" destination="4MW-ei-yRW" id="id8-U1-Wdf"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yvs-0z-fd9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yvs-0z-fd9" firstAttribute="top" secondItem="sca-Cs-vV0" secondAttribute="top" constant="13" id="2ep-Ih-6TS"/>
+                            <constraint firstItem="sca-Cs-vV0" firstAttribute="leading" secondItem="Yvs-0z-fd9" secondAttribute="leading" id="4hZ-98-jYx"/>
+                            <constraint firstItem="Yvs-0z-fd9" firstAttribute="trailing" secondItem="sca-Cs-vV0" secondAttribute="trailing" id="Vhn-l7-l2a"/>
+                            <constraint firstItem="Yvs-0z-fd9" firstAttribute="bottom" secondItem="sca-Cs-vV0" secondAttribute="bottom" id="Yg9-qC-7yv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="chart.bar.xaxis" catalog="system" id="oiP-Vs-0Vg"/>
+                    <connections>
+                        <outlet property="collectionView" destination="sca-Cs-vV0" id="EAZ-HL-tGz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ekf-OL-T5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="791"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

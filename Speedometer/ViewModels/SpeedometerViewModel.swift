@@ -9,11 +9,11 @@ import Foundation
 import CoreLocation
 import MapKit
 import Combine
+import CoreData
 
 final class SpeedometerViewModel {
     let locationPublisher = LocationPublisher()
     let stopwatch = Stopwatch()
-    var previousCoordinate: CLLocationCoordinate2D?
     var previousLocation: CLLocation?
     @Published var logsOfSpeed: [Double] = []
     @Published var topSpeed: Double = 0
@@ -26,13 +26,38 @@ final class SpeedometerViewModel {
     @Published var speedometerResult: SpeedmeterResult?
     var subscriptions = Set<AnyCancellable>()
 
+    var container: NSPersistentContainer!
+//    guard container != nil else {
+//        fatalError("This view needs a persistent container.")
+//    }
+
+
     init() {
         bind()
     }
 
-    func  createSpeedometerResult() {
-        let result = SpeedmeterResult(duration: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude)
+    func createSpeedometerResult() {
+        let result = SpeedmeterResult(duration: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude, addedImage: UIImage(named: "avocado"))
         speedometerResult = result
+    }
+
+    func saveResult() {
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "SavedResult", in: context)
+
+        if let entity = entity {
+            let result = NSManagedObject(entity: entity, insertInto: context)
+            result.setValue(speedometerResult?.title, forKey: "title")
+            result.setValue(speedometerResult?.addedImage?.pngData(), forKey: "image")
+
+            do {
+              try context.save()
+            } catch {
+              print(error.localizedDescription)
+            }
+        }
     }
 
     private func bind() {
@@ -48,14 +73,15 @@ final class SpeedometerViewModel {
                 if speed > 0 {
                     self.allCoordinates.append(location.coordinate)
 
-                    guard let previousLocation = self.previousLocation else { return }
-                    let distance = location.distance(from: previousLocation)
-                    self.totalDistance += distance
-
-                    if location.altitude > previousLocation.altitude {
-                        self.alititude += round(location.altitude - previousLocation.altitude)
+                    if let previousLocation = self.previousLocation {
+                        let distance = location.distance(from: previousLocation)
+                        print("distance: \(distance)")
+                        self.totalDistance += distance
+                        
+                        if location.altitude > previousLocation.altitude {
+                            self.alititude += location.altitude - previousLocation.altitude
+                        }
                     }
-
                     self.previousLocation = location
                 }
             }.store(in: &subscriptions)

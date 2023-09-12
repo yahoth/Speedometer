@@ -143,7 +143,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="0MM-gd-Ukk" kind="relationship" relationship="viewControllers" id="XyJ-PM-Wwr"/>
-                        <segue destination="uwk-G3-Suz" kind="relationship" relationship="viewControllers" id="7dT-os-Q3L"/>
+                        <segue destination="IrK-VL-rRU" kind="relationship" relationship="viewControllers" id="7dT-os-Q3L"/>
                         <segue destination="0g9-RA-lU2" kind="relationship" relationship="viewControllers" id="Xkv-4V-aNk"/>
                         <segue destination="bPc-0n-SHS" kind="relationship" relationship="viewControllers" id="Ew7-aP-3a5"/>
                     </connections>
@@ -151,22 +151,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqo-QB-R58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="-6"/>
-        </scene>
-        <!--Statistics-->
-        <scene sceneID="RO4-h9-CmQ">
-            <objects>
-                <viewController storyboardIdentifier="StatisticsViewController" id="uwk-G3-Suz" customClass="StatisticsViewController" customModule="Speedometer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RFV-0A-n6g">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Yvs-0z-fd9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" image="chart.bar.xaxis" catalog="system" id="oiP-Vs-0Vg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ekf-OL-T5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="140" y="791"/>
         </scene>
         <!--Setting-->
         <scene sceneID="Mcd-9Z-fKl">
@@ -204,9 +188,18 @@
             </objects>
             <point key="canvasLocation" x="-723" y="481"/>
         </scene>
+        <!--StatisticsViewController-->
+        <scene sceneID="t89-CP-Ttn">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="StatisticsViewController" storyboardName="Statistics" referencedIdentifier="StatisticsViewController" id="IrK-VL-rRU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="bKj-Vc-Jyq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PWq-Ol-I0U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="481"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="hammer.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

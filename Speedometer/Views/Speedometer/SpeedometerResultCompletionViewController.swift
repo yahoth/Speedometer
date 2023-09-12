@@ -33,7 +33,15 @@ class SpeedometerResultCompletionViewController: UIViewController {
     private func setNavigationBar() {
 //        self.navigationController?.navigationItem.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: true)
-//        self.navigationItem.rightBarButtonItem = barButtonItem
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissViewController))
+        navigationItem.rightBarButtonItem = doneButton
+
+    }
+
+    @objc func dismissViewController() {
+        vm.speedometerResult?.title = "hello"
+        vm.saveResult()
+        self.dismiss(animated: true)
     }
 
     private func setRegion() {
@@ -74,7 +82,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
                 self.distanceLabel.text = result.distanceString
                 self.averageSpeedLabel.text = result.averageSpeedString
                 self.topSpeedLabel.text = "\(result.topSpeed)KM/H"
-                self.altitudeLabel.text = "\(result.altitude)M"
+                self.altitudeLabel.text = result.altitudeString
                 self.heartRateLabel.text = "0BPM"
             }.store(in: &subscriptions)
     }

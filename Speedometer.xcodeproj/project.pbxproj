@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7609EB632AB0930B00279A4E /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7609EB622AB0930B00279A4E /* Statistics.storyboard */; };
 		760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */; };
 		760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4812AAA012900E1E183 /* StatisticsViewController.swift */; };
 		760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4832AAA014100E1E183 /* SettingViewController.swift */; };
@@ -26,6 +27,10 @@
 		76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */; };
 		76DC3A6D2AA9EF9400066052 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6C2AA9EF9400066052 /* Main.storyboard */; };
 		76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */; };
+		76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */; };
+		76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */; };
+		76DC9E6C2AB07833002D2A87 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E6B2AB07833002D2A87 /* PersistentContainer.swift */; };
+		76DC9E6F2AB07DCB002D2A87 /* SavedResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E6D2AB07DCB002D2A87 /* SavedResult+CoreDataClass.swift */; };
 		76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */; };
 		76DED9D22AADA73C00C7660C /* SpeedmeterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */; };
 		76E9E30B2AA76E400072FA48 /* TempResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E9E30A2AA76E400072FA48 /* TempResult.storyboard */; };
@@ -37,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7609EB622AB0930B00279A4E /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Speedometer/Views/Statistics.storyboard; sourceTree = SOURCE_ROOT; };
 		760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewController.swift; sourceTree = "<group>"; };
 		760CA4812AAA012900E1E183 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		760CA4832AAA014100E1E183 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,10 @@
 		76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		76DC3A6C2AA9EF9400066052 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Speedometer.storyboard; sourceTree = "<group>"; };
+		76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRowCell.swift; sourceTree = "<group>"; };
+		76DC9E692AB075B3002D2A87 /* SpeedometerResultContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpeedometerResultContainer.xcdatamodel; sourceTree = "<group>"; };
+		76DC9E6B2AB07833002D2A87 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		76DC9E6D2AB07DCB002D2A87 /* SavedResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedResult+CoreDataClass.swift"; sourceTree = "<group>"; };
 		76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerNavigationController.swift; sourceTree = "<group>"; };
 		76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedmeterResult.swift; sourceTree = "<group>"; };
 		76E9E30A2AA76E400072FA48 /* TempResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempResult.storyboard; sourceTree = "<group>"; };
@@ -136,7 +146,9 @@
 		7693D44B2AADA2E3005E14E0 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				7609EB622AB0930B00279A4E /* Statistics.storyboard */,
 				760CA4812AAA012900E1E183 /* StatisticsViewController.swift */,
+				76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -195,8 +207,11 @@
 		76E9E3182AA8D2900072FA48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				76DC9E6D2AB07DCB002D2A87 /* SavedResult+CoreDataClass.swift */,
 				76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */,
+				76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */,
 				76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */,
+				76DC9E6B2AB07833002D2A87 /* PersistentContainer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -290,6 +305,7 @@
 			files = (
 				7693D4412AAD99A4005E14E0 /* Home.storyboard in Resources */,
 				764FD7112AA49BE100C4ECF1 /* LaunchScreen.storyboard in Resources */,
+				7609EB632AB0930B00279A4E /* Statistics.storyboard in Resources */,
 				76DC3A6D2AA9EF9400066052 /* Main.storyboard in Resources */,
 				7693D4472AAD9E86005E14E0 /* SpeedometerResultCompletion.storyboard in Resources */,
 				7693D4432AAD9C34005E14E0 /* MapSnapshotAdjustmentView.storyboard in Resources */,
@@ -309,17 +325,21 @@
 			files = (
 				7693D4452AAD9C52005E14E0 /* MapSnapshotAdjustmentViewController.swift in Sources */,
 				764FD7092AA49BE000C4ECF1 /* TestViewController.swift in Sources */,
+				76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */,
 				7693D4492AAD9E90005E14E0 /* SpeedometerResultCompletionViewController.swift in Sources */,
 				76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */,
 				76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */,
 				764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */,
 				760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */,
+				76DC9E6F2AB07DCB002D2A87 /* SavedResult+CoreDataClass.swift in Sources */,
 				760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */,
 				760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */,
+				76DC9E6C2AB07833002D2A87 /* PersistentContainer.swift in Sources */,
 				76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */,
 				76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */,
 				76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */,
+				76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,
 				760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */,
 				76E9E30D2AA76EF00072FA48 /* TempResultViewController.swift in Sources */,
@@ -538,6 +558,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				76DC9E692AB075B3002D2A87 /* SpeedometerResultContainer.xcdatamodel */,
+			);
+			currentVersion = 76DC9E692AB075B3002D2A87 /* SpeedometerResultContainer.xcdatamodel */;
+			path = ResultContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 764FD6F92AA49BE000C4ECF1 /* Project object */;
 }

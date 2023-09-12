@@ -5,14 +5,17 @@
 //  Created by TAEHYOUNG KIM on 2023/09/10.
 //
 
-import Foundation
+import UIKit
 
-struct SpeedmeterResult {
+struct SpeedmeterResult: Hashable {
     var duration: Int
     var distance: Double
     var averageSpeed: Double
     var topSpeed: Double
     var altitude: Double
+    var title: String?
+    var mapView: UIImage?
+    var addedImage: UIImage?
 
     var distanceString: String {
         switch distance {
@@ -35,5 +38,9 @@ struct SpeedmeterResult {
         let seconds = (duration % 3600) % 60
 
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+
+    var altitudeString: String {
+        "\(Int(round(altitude)))M"
     }
 }
