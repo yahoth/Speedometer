@@ -31,18 +31,23 @@ class SpeedometerResultCompletionViewController: UIViewController {
     }
 
     private func setNavigationBar() {
-//        self.navigationController?.navigationItem.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: true)
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissViewController))
-        navigationItem.rightBarButtonItem = doneButton
+        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveResultAndDismiss))
+        navigationItem.rightBarButtonItem = saveButton
 
+        let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteResultAndDismiss))
+        navigationItem.leftBarButtonItem = deleteButton
     }
 
-    @objc func dismissViewController() {
-        vm.speedometerResult?.title = "hello"
+    @objc func deleteResultAndDismiss() {
+        self.dismiss(animated: true)
+    }
+
+    @objc func saveResultAndDismiss() {
         vm.saveResult()
         self.dismiss(animated: true)
     }
+
 
     private func setRegion() {
         let latitudes = vm.allCoordinates.map { $0.latitude }

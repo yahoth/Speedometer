@@ -9,22 +9,26 @@ import UIKit
 import CoreData
 import Combine
 
-class StatisticsViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
 
-    var datasource: UICollectionViewDiffableDataSource<Section, Item>!
-    @Published var results: [SavedResult]?
-    var subscriptions = Set<AnyCancellable>()
+class StatisticsViewController: UIViewController {
+    let vm = StatisticsViewModel()
+
+    @IBOutlet weak var tableView: UITableView!
+    var datasource: UITableViewDiffableDataSource<Section, Item>!
     typealias Item = SavedResult
     enum Section {
         case main
     }
+
+    @Published var results: [SavedResult]?
+    var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         fetch()
         bind()
+        print("Statisctics VC init")
     }
 
     func bind() {
@@ -54,8 +58,8 @@ class StatisticsViewController: UIViewController {
     }
 
     private func configureCollectionView() {
-        datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatisticsRowCell", for: indexPath) as? StatisticsRowCell else { return UICollectionViewCell() }
+        datasource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StatisticsRowCell", for: indexPath) as? StatisticsRowCell else { return nil }
             cell.configure(item: item)
             return cell
         }
@@ -64,27 +68,39 @@ class StatisticsViewController: UIViewController {
         snapshot.appendItems([])
 
         datasource.apply(snapshot)
-
-        collectionView.collectionViewLayout = layout()
-        collectionView.delegate = self
+        tableView.delegate = self
     }
 
-    private func layout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(2 / 5))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 15
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
 }
 
-extension StatisticsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension StatisticsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
+
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.bounds.size.height * 0.4
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .delete
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
+            var snapshot = self.datasource.snapshot()
+            guard let itemToDelete = self.datasource.itemIdentifier(for: indexPath) else {
+                completion(false)
+                return
+            }
+            self.vm.coredataManager.deleteItem(itemToDelete: itemToDelete)
+            snapshot.deleteItems([itemToDelete])
+            self.datasource.apply(snapshot)
+            completion(true)
+        }
+         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
+
+
+

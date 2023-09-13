@@ -29,6 +29,7 @@ class SpeedometerViewController: UIViewController {
         vm.startTracking()
         bind()
         setupMenu()
+        menuButton.layer.cornerRadius = 8
 
     }
     private func setupMenu() {
@@ -82,7 +83,7 @@ class SpeedometerViewController: UIViewController {
         vm.$alititude
             .receive(on: RunLoop.main)
             .sink { altitude in
-                self.altitudeLabel.text = "\(round(altitude))M"
+                self.altitudeLabel.text = "\(Int(round(altitude)))M"
             }.store(in: &subscriptions)
 
         vm.stopwatch.$totalElapsedTime

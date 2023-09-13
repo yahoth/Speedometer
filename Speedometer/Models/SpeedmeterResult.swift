@@ -15,7 +15,7 @@ struct SpeedmeterResult: Hashable {
     var altitude: Double
     var title: String?
     var mapView: UIImage?
-    var addedImage: UIImage?
+    var image: UIImage?
 
     var distanceString: String {
         switch distance {

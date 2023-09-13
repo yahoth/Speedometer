@@ -13,6 +13,7 @@ import CoreData
 
 final class SpeedometerViewModel {
     let locationPublisher = LocationPublisher()
+    let coredataManager = CoreDataManager()
     let stopwatch = Stopwatch()
     var previousLocation: CLLocation?
     @Published var logsOfSpeed: [Double] = []
@@ -26,38 +27,18 @@ final class SpeedometerViewModel {
     @Published var speedometerResult: SpeedmeterResult?
     var subscriptions = Set<AnyCancellable>()
 
-    var container: NSPersistentContainer!
-//    guard container != nil else {
-//        fatalError("This view needs a persistent container.")
-//    }
-
-
     init() {
         bind()
     }
 
     func createSpeedometerResult() {
-        let result = SpeedmeterResult(duration: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude, addedImage: UIImage(named: "avocado"))
+        let result = SpeedmeterResult(duration: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude)
         speedometerResult = result
     }
 
     func saveResult() {
-
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "SavedResult", in: context)
-
-        if let entity = entity {
-            let result = NSManagedObject(entity: entity, insertInto: context)
-            result.setValue(speedometerResult?.title, forKey: "title")
-            result.setValue(speedometerResult?.addedImage?.pngData(), forKey: "image")
-
-            do {
-              try context.save()
-            } catch {
-              print(error.localizedDescription)
-            }
-        }
+        guard let speedometerResult else { return }
+        coredataManager.createResult(result: speedometerResult)
     }
 
     private func bind() {

@@ -9,16 +9,22 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
-
+        configureUI()
     }
+
+    func configureUI() {
+    }
+
     @IBAction func startButtonTapped(_ sender: Any) {
+        startSpeedometerMeasurement()
+    }
+
+    func startSpeedometerMeasurement() {
         let sb = UIStoryboard(name: "Speedometer", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "SpeedometerNavigationController") as! SpeedometerNavigationController
 
@@ -26,6 +32,6 @@ class HomeViewController: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
 
         present(vc, animated: true)
-    }
 
+    }
 }
