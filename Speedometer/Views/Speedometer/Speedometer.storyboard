@@ -79,8 +79,8 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCu-Ue-kUg">
-                                                        <rect key="frame" x="10" y="9.9999999999999982" width="65.333333333333329" height="20.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCu-Ue-kUg" userLabel="Time">
+                                                        <rect key="frame" x="10" y="9.9999999999999982" width="37.666666666666664" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -248,9 +248,9 @@
                         <outlet property="averageSpeedLabel" destination="BAE-lK-nKg" id="ENa-oo-jMf"/>
                         <outlet property="currentSpeedLabel" destination="MBu-0q-3Je" id="VUL-pE-vdm"/>
                         <outlet property="distanceLabel" destination="XMC-2J-wIA" id="Ts1-NT-8sy"/>
-                        <outlet property="durationLabel" destination="fE8-4P-Zab" id="MY7-T1-Hna"/>
                         <outlet property="heartRateLabel" destination="ta0-uB-WuY" id="EAh-z8-lUM"/>
                         <outlet property="menuButton" destination="pVP-je-pxe" id="dgy-0p-KSO"/>
+                        <outlet property="timeLabel" destination="fE8-4P-Zab" id="p0H-Wo-Jzx"/>
                         <outlet property="topSpeedLabel" destination="yu7-pH-fEL" id="AE7-rM-z5i"/>
                     </connections>
                 </viewController>

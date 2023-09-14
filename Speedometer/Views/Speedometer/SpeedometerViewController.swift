@@ -11,7 +11,7 @@ import Combine
 class SpeedometerViewController: UIViewController {
 
     @IBOutlet weak var currentSpeedLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var averageSpeedLabel: UILabel!
     @IBOutlet weak var topSpeedLabel: UILabel!
@@ -30,14 +30,16 @@ class SpeedometerViewController: UIViewController {
         bind()
         setupMenu()
         menuButton.layer.cornerRadius = 8
-
+        vm.startDate = Date()
     }
+
     private func setupMenu() {
         let start = UIAction(title: "start", image: UIImage(systemName: "play.fill"), handler: { [weak self] _ in self?.vm.startTracking() })
         let pause = UIAction(title: "pause", image: UIImage(systemName: "pause.fill"), handler: { [weak self] _ in self?.vm.pauseTracking() })
         let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { [weak self] _ in
             self?.vm.stopTracking()
             self?.vm.createSpeedometerResult()
+
             let sb = UIStoryboard(name: "SpeedometerResultCompletion", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "SpeedometerResultCompletionViewController") as! SpeedometerResultCompletionViewController
             vc.vm = self?.vm
@@ -93,7 +95,7 @@ class SpeedometerViewController: UIViewController {
                 let minutes = (time % 3600) / 60
                 let seconds = (time % 3600) % 60
 
-                self.durationLabel.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+                self.timeLabel.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
             }.store(in: &subscriptions)
     }
 }

@@ -12,13 +12,18 @@ import Combine
 final class CoreDataManager {
     private let context: NSManagedObjectContext
 
+    var didChangeObjectsNotification: AnyPublisher<NotificationCenter.Publisher.Output, Never> {
+        NotificationCenter.default.publisher(for: NSManagedObjectContext.didChangeObjectsNotification, object: context)
+            .eraseToAnyPublisher()
+    }
+
     init(context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext) {
         self.context = context
     }
 
     func createResult(result: SpeedmeterResult) {
         let newResult = SavedResult(context: context)
-        newResult.duration = Int64(result.duration)
+        newResult.time = Int64(result.time)
         newResult.distance = result.distance
         newResult.averageSpeed = result.averageSpeed
         newResult.topSpeed = result.topSpeed
@@ -26,6 +31,8 @@ final class CoreDataManager {
         newResult.mapView = result.mapView?.pngData()
         newResult.image = result.image?.pngData()
         newResult.title = result.title
+        newResult.startDate = result.startDate
+        newResult.endDate = result.endDate
         saveContext()
     }
 

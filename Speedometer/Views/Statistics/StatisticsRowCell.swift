@@ -30,7 +30,7 @@ class StatisticsRowCell: UITableViewCell {
     func configure(item: SavedResult) {
         self.view.layer.cornerRadius = 20
         self.view.backgroundColor = .label
-        titleLabel.text = item.title ?? "hello"
+        titleLabel.text = item.title ?? item.defaultTitle
         let dynamicColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
             return traitCollection.userInterfaceStyle == .dark ? .black : .white
         }

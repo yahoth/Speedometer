@@ -16,6 +16,8 @@ final class SpeedometerViewModel {
     let coredataManager = CoreDataManager()
     let stopwatch = Stopwatch()
     var previousLocation: CLLocation?
+    var startDate: Date?
+    var endDate: Date?
     @Published var logsOfSpeed: [Double] = []
     @Published var topSpeed: Double = 0
     @Published var totalDistance: CLLocationDistance = 0
@@ -25,6 +27,7 @@ final class SpeedometerViewModel {
     @Published var allCoordinates: [CLLocationCoordinate2D] = []
     @Published var span: MKCoordinateSpan?
     @Published var speedometerResult: SpeedmeterResult?
+    @Published var image: UIImage?
     var subscriptions = Set<AnyCancellable>()
 
     init() {
@@ -32,7 +35,8 @@ final class SpeedometerViewModel {
     }
 
     func createSpeedometerResult() {
-        let result = SpeedmeterResult(duration: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude)
+        guard let startDate else { return }
+        let result = SpeedmeterResult(startDate: startDate, endDate: Date(), time: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude)
         speedometerResult = result
     }
 

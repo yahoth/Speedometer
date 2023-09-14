@@ -15,28 +15,31 @@ class StatisticsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var datasource: UITableViewDiffableDataSource<Section, Item>!
+    var subscriptions = Set<AnyCancellable>()
     typealias Item = SavedResult
     enum Section {
         case main
     }
 
-    @Published var results: [SavedResult]?
-    var subscriptions = Set<AnyCancellable>()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        fetch()
+        vm.fetch()
         bind()
         print("Statisctics VC init")
     }
 
     func bind() {
-        $results
+        vm.$results
             .compactMap { $0 }
             .sink { results in
                 self.applySnapshot(item: results)
             }.store(in: &subscriptions)
+
+        vm.coredataManager.didChangeObjectsNotification
+            .sink { _ in
+                self.vm.fetch()
+        }.store(in: &subscriptions)
     }
 
     func applySnapshot(item: [SavedResult]) {
@@ -45,17 +48,7 @@ class StatisticsViewController: UIViewController {
         datasource.apply(snapshot)
     }
 
-    func fetch() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
 
-        do {
-            let results = try context.fetch(SavedResult.fetchRequest()) as? [SavedResult]
-            self.results = results
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
 
     private func configureCollectionView() {
         datasource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item in
@@ -76,6 +69,7 @@ class StatisticsViewController: UIViewController {
 extension StatisticsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
+        print(item.defaultTitle)
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

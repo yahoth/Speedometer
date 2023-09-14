@@ -10,5 +10,10 @@ import Combine
 
 class StatisticsViewModel {
     let coredataManager = CoreDataManager()
-    
+
+    @Published var results: [SavedResult]?
+
+    func fetch() {
+        results = coredataManager.fetchResults()
+    }
 }

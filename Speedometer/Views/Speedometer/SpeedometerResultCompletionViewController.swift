@@ -8,17 +8,21 @@
 import UIKit
 import MapKit
 import Combine
+import PhotosUI
 
 class SpeedometerResultCompletionViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var averageSpeedLabel: UILabel!
     @IBOutlet weak var topSpeedLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var heartRateLabel: UILabel!
 
+    @IBOutlet weak var imageView: UIImageView!
     var vm: SpeedometerViewModel!
     var subscriptions = Set<AnyCancellable>()
 
@@ -37,6 +41,10 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
         let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteResultAndDismiss))
         navigationItem.leftBarButtonItem = deleteButton
+
+        let addPhotoButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoButtonTapped))
+        navigationItem.rightBarButtonItems = [saveButton, addPhotoButton]
+
     }
 
     @objc func deleteResultAndDismiss() {
@@ -46,6 +54,22 @@ class SpeedometerResultCompletionViewController: UIViewController {
     @objc func saveResultAndDismiss() {
         vm.saveResult()
         self.dismiss(animated: true)
+    }
+
+    @objc func addPhotoButtonTapped() {
+        addPhoto()
+    }
+
+    func addPhoto() {
+        var config = PHPickerConfiguration(photoLibrary: .shared())
+        config.filter = .images
+        config.preferredAssetRepresentationMode = .current
+        config.selection = .ordered
+        config.selectionLimit = 1
+
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
     }
 
 
@@ -83,12 +107,19 @@ class SpeedometerResultCompletionViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [unowned self] result in
                 guard let result else { return }
-                self.durationLabel.text = result.durationString
+                self.titleLabel.text = result.title ?? result.defaultTitle
+                self.durationLabel.text = result.duration
+                self.timeLabel.text = result.timeString
                 self.distanceLabel.text = result.distanceString
                 self.averageSpeedLabel.text = result.averageSpeedString
                 self.topSpeedLabel.text = "\(result.topSpeed)KM/H"
                 self.altitudeLabel.text = result.altitudeString
                 self.heartRateLabel.text = "0BPM"
+            }.store(in: &subscriptions)
+        vm.$image
+            .receive(on: RunLoop.main)
+            .sink { image in
+                self.imageView.image = image
             }.store(in: &subscriptions)
     }
 
@@ -134,6 +165,22 @@ extension SpeedometerResultCompletionViewController: MKMapViewDelegate {
 
         } else {
             return MKOverlayRenderer()
+        }
+    }
+}
+
+extension SpeedometerResultCompletionViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProvider = results.first?.itemProvider
+
+        picker.dismiss(animated: true, completion: nil)
+
+        if let itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                if let image = image as? UIImage {
+                    self.vm.image = image
+                }
+            }
         }
     }
 }

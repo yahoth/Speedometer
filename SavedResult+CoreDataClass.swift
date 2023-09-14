@@ -1,26 +1,17 @@
 //
-//  SpeedmeterResult.swift
+//  SavedResult+CoreDataClass.swift
 //  Speedometer
 //
-//  Created by TAEHYOUNG KIM on 2023/09/10.
+//  Created by TAEHYOUNG KIM on 2023/09/14.
+//
 //
 
-import UIKit
+import Foundation
+import CoreData
 
-struct SpeedmeterResult: Hashable {
-    let startDate: Date
-    let endDate: Date
-    let time: Int
-    let distance: Double
-    let averageSpeed: Double
-    let topSpeed: Double
-    let altitude: Double
-    var title: String?
-    var mapView: UIImage?
-    var image: UIImage?
-}
+@objc(SavedResult)
+public class SavedResult: NSManagedObject {
 
-extension SpeedmeterResult {
     var distanceString: String {
         switch distance {
         case 0..<1000: // 1KM 미만일 때 Meter 단위
@@ -51,14 +42,17 @@ extension SpeedmeterResult {
     var duration: String {
         // 시작과 끝이 같은 날이면 ex) 9월 1일 오전 0시 0분 ~ 오후 1시 20분
         // 날짜가 바뀌면 ex) 9월 1일 오전 0시 0분 ~ 9월 2일 오전 0시 0분
-        "\(DateFormatters.shared.stringFullDateTime(from: startDate)) ~ \(isSameDay ? DateFormatters.shared.stringTimeOnly(from: endDate) : DateFormatters.shared.stringFullDateTime(from: endDate))"
+        guard let startDate, let endDate else { return "" }
+        return "\(DateFormatters.shared.stringFullDateTime(from: startDate)) ~ \(isSameDay ? DateFormatters.shared.stringTimeOnly(from: endDate) : DateFormatters.shared.stringFullDateTime(from: endDate))"
     }
 
     var defaultTitle: String {
-        "\(DateFormatters.shared.stringMonthDay(from: startDate))의 기록"
+        guard let startDate else { return "" }
+        return  "\(DateFormatters.shared.stringMonthDay(from: startDate))의 기록"
     }
 
     var isSameDay: Bool {
-        Calendar.current.isDate(startDate, inSameDayAs: endDate)
+        guard let startDate, let endDate else { return true}
+        return Calendar.current.isDate(startDate, inSameDayAs: endDate)
     }
 }

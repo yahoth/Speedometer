@@ -14,10 +14,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-    }
-
-    func configureUI() {
     }
 
     @IBAction func startButtonTapped(_ sender: Any) {
@@ -32,6 +28,5 @@ class HomeViewController: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
 
         present(vc, animated: true)
-
     }
 }
