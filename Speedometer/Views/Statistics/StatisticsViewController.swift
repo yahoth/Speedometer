@@ -29,7 +29,7 @@ class StatisticsViewController: UIViewController {
         print("Statisctics VC init")
     }
 
-    func bind() {
+    private func bind() {
         vm.$results
             .compactMap { $0 }
             .sink { results in
@@ -40,15 +40,24 @@ class StatisticsViewController: UIViewController {
             .sink { _ in
                 self.vm.fetch()
         }.store(in: &subscriptions)
+
+        vm.selectedResult
+            .sink { result in
+                let sb = UIStoryboard(name: "StatisticsDetail", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "StatisticsDetailViewController") as! StatisticsDetailViewController
+                vc.vm = StatisticsDetailViewModel(result: result)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }.store(in: &subscriptions)
     }
 
-    func applySnapshot(item: [SavedResult]) {
+    private func applySnapshot(item: [SavedResult]) {
         var snapshot = datasource.snapshot()
+        // 기존의 applied Snapshot 제거 후 apply
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
         snapshot.appendItems(item)
         datasource.apply(snapshot)
     }
-
-
 
     private func configureCollectionView() {
         datasource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item in
@@ -63,23 +72,19 @@ class StatisticsViewController: UIViewController {
         datasource.apply(snapshot)
         tableView.delegate = self
     }
-
 }
 
 extension StatisticsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
-        print(item.defaultTitle)
-
+        vm.selectedResult.send(item)
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.bounds.size.height * 0.4
     }
 
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        .delete
-    }
-
+    // 왼쪽 Swipe하여 아이템 삭제
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
             var snapshot = self.datasource.snapshot()
@@ -87,7 +92,10 @@ extension StatisticsViewController: UITableViewDelegate {
                 completion(false)
                 return
             }
+            //Core Data Context의 item 삭제
             self.vm.coredataManager.deleteItem(itemToDelete: itemToDelete)
+
+            //해당 Item 삭제 후 datasource 등록
             snapshot.deleteItems([itemToDelete])
             self.datasource.apply(snapshot)
             completion(true)

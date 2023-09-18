@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Request permission to use location services
-        let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
+//        let locationManager = CLLocationManager()
+//        locationManager.requestWhenInUseAuthorization()
 
         return true
     }

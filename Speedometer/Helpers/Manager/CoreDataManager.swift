@@ -33,11 +33,13 @@ final class CoreDataManager {
         newResult.title = result.title
         newResult.startDate = result.startDate
         newResult.endDate = result.endDate
+        newResult.image = result.image?.pngData()
+        newResult.isCompleted = true
         saveContext()
     }
 
     private func saveContext() {
-        guard context.hasChanges else { return }
+//        guard context.hasChanges else { return }
         do {
             try context.save()
         } catch let error as NSError {
@@ -48,6 +50,10 @@ final class CoreDataManager {
     // Read
     func fetchResults() -> [SavedResult] {
         let fetchRequest = NSFetchRequest<SavedResult>(entityName: "SavedResult")
+
+        fetchRequest.predicate = NSPredicate(format: "isCompleted == %@", NSNumber(value: true))
+
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
 
         do {
             let items = try context.fetch(fetchRequest)
@@ -69,7 +75,24 @@ final class CoreDataManager {
     // Delete
     func deleteItem(itemToDelete : SavedResult){
         context.delete(itemToDelete)
-
         saveContext()
+    }
+
+    func reset() {
+        let fetchRequest = NSFetchRequest<SavedResult>(entityName: "SavedResult")
+        fetchRequest.includesPropertyValues = false // Only fetch the managedObjectID
+        do {
+            let items = try context.fetch(fetchRequest)
+
+            for item in items {
+                context.delete(item)
+            }
+
+            // Save Changes
+            saveContext()
+
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }

@@ -16,4 +16,6 @@ class StatisticsViewModel {
     func fetch() {
         results = coredataManager.fetchResults()
     }
+
+    let selectedResult = PassthroughSubject<SavedResult, Never>()
 }

@@ -65,7 +65,6 @@ class TempResultViewController: UIViewController {
         mapView.addOverlay(startCircle)
         mapView.addOverlay(endCircle)
     }
-
 }
 
 extension TempResultViewController: MKMapViewDelegate {

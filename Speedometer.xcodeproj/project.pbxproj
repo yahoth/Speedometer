@@ -11,6 +11,11 @@
 		7603AFAA2AB2F22C007A027C /* StatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */; };
 		7603AFAC2AB303D6007A027C /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFAB2AB303D6007A027C /* DateFormatters.swift */; };
 		7603AFBA2AB328E2007A027C /* SavedResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */; };
+		7603AFBC2AB83ACD007A027C /* StatisticsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFBB2AB83ACD007A027C /* StatisticsDetailViewModel.swift */; };
+		7603AFBE2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFBD2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift */; };
+		7603AFC02AB86E97007A027C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFBF2AB86E97007A027C /* MainTabBarController.swift */; };
+		7603AFC22AB86F7E007A027C /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFC12AB86F7E007A027C /* MainTabBarViewModel.swift */; };
+		7603AFC42AB87FD1007A027C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFC32AB87FD1007A027C /* HomeViewModel.swift */; };
 		7609EB632AB0930B00279A4E /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7609EB622AB0930B00279A4E /* Statistics.storyboard */; };
 		760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */; };
 		760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4812AAA012900E1E183 /* StatisticsViewController.swift */; };
@@ -51,6 +56,11 @@
 		7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDetailViewController.swift; sourceTree = "<group>"; };
 		7603AFAB2AB303D6007A027C /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedResult+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7603AFBB2AB83ACD007A027C /* StatisticsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDetailViewModel.swift; sourceTree = "<group>"; };
+		7603AFBD2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerResultCompletionViewModel.swift; sourceTree = "<group>"; };
+		7603AFBF2AB86E97007A027C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7603AFC12AB86F7E007A027C /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
+		7603AFC32AB87FD1007A027C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7609EB622AB0930B00279A4E /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Speedometer/Views/Statistics.storyboard; sourceTree = SOURCE_ROOT; };
 		760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewController.swift; sourceTree = "<group>"; };
 		760CA4812AAA012900E1E183 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +112,6 @@
 		764FD6F82AA49BE000C4ECF1 = {
 			isa = PBXGroup;
 			children = (
-				7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */,
 				764FD7032AA49BE000C4ECF1 /* Speedometer */,
 				764FD7022AA49BE000C4ECF1 /* Products */,
 			);
@@ -168,6 +177,7 @@
 			children = (
 				7693D4402AAD99A4005E14E0 /* Home.storyboard */,
 				760CA4852AAA015D00E1E183 /* HomeViewController.swift */,
+				7603AFC32AB87FD1007A027C /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -216,8 +226,11 @@
 		76E9E3162AA8D2820072FA48 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				7603AFC12AB86F7E007A027C /* MainTabBarViewModel.swift */,
 				760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */,
+				7603AFBD2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift */,
 				7691B4982AB206E500454E6A /* StatisticsViewModel.swift */,
+				7603AFBB2AB83ACD007A027C /* StatisticsDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -226,8 +239,9 @@
 			isa = PBXGroup;
 			children = (
 				76DC3A6C2AA9EF9400066052 /* Main.storyboard */,
-				7693D44D2AADA32B005E14E0 /* Speedometer */,
+				7603AFBF2AB86E97007A027C /* MainTabBarController.swift */,
 				7693D44A2AADA2DD005E14E0 /* Home */,
+				7693D44D2AADA32B005E14E0 /* Speedometer */,
 				7693D44B2AADA2E3005E14E0 /* Statistics */,
 				7693D44C2AADA2EC005E14E0 /* Setting */,
 				7693D43F2AAD9938005E14E0 /* Test */,
@@ -241,6 +255,7 @@
 			children = (
 				76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */,
 				76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */,
+				7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -355,6 +370,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7603AFC02AB86E97007A027C /* MainTabBarController.swift in Sources */,
+				7603AFBC2AB83ACD007A027C /* StatisticsDetailViewModel.swift in Sources */,
 				7693D4452AAD9C52005E14E0 /* MapSnapshotAdjustmentViewController.swift in Sources */,
 				764FD7092AA49BE000C4ECF1 /* TestViewController.swift in Sources */,
 				7603AFAA2AB2F22C007A027C /* StatisticsDetailViewController.swift in Sources */,
@@ -368,6 +385,7 @@
 				760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */,
 				760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */,
 				7691B4992AB206E500454E6A /* StatisticsViewModel.swift in Sources */,
+				7603AFC22AB86F7E007A027C /* MainTabBarViewModel.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */,
 				76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */,
 				7603AFBA2AB328E2007A027C /* SavedResult+CoreDataClass.swift in Sources */,
@@ -381,6 +399,8 @@
 				76DED9D22AADA73C00C7660C /* SpeedmeterResult.swift in Sources */,
 				7691B48D2AB1ABB200454E6A /* CoreDataManager.swift in Sources */,
 				760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */,
+				7603AFC42AB87FD1007A027C /* HomeViewModel.swift in Sources */,
+				7603AFBE2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

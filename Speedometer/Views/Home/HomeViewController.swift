@@ -11,13 +11,19 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
 
+    var vm: HomeViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        vm = HomeViewModel()
     }
 
     @IBAction func startButtonTapped(_ sender: Any) {
-        startSpeedometerMeasurement()
+        if vm.locationPublisher.authorizationStatus != .authorizedWhenInUse {
+            vm.locationPublisher.requestWhenInUseAuthorization()
+        } else {
+            startSpeedometerMeasurement()
+        }
     }
 
     func startSpeedometerMeasurement() {

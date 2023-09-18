@@ -13,6 +13,20 @@ class StatisticsRowCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let thumbnailImageView {
+            updateCornerRadius(thumbnailImageView)
+        }
+        updateCornerRadius(view)
+    }
+
+    private func updateCornerRadius(_ view: UIView) {
+        let viewSize = min(view.bounds.width, view.bounds.height)
+        view.layer.cornerRadius = viewSize * 0.1
+        view.clipsToBounds = true
+    }
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
@@ -28,7 +42,7 @@ class StatisticsRowCell: UITableViewCell {
     }
 
     func configure(item: SavedResult) {
-        self.view.layer.cornerRadius = 20
+//        self.view.layer.cornerRadius = 16
         self.view.backgroundColor = .label
         titleLabel.text = item.title ?? item.defaultTitle
         let dynamicColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
@@ -38,6 +52,7 @@ class StatisticsRowCell: UITableViewCell {
         if let image = item.image {
             thumbnailImageView.image = UIImage(data: image)
             thumbnailImageView.contentMode = .scaleAspectFill
+//            thumbnailImageView.layer.cornerRadius = 16
         }
     }
 }

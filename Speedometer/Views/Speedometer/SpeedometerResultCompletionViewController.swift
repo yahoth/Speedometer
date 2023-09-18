@@ -72,7 +72,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
         present(picker, animated: true)
     }
 
-
+    // 출발점과 종착점을 고려하여 MapView의 center, span을 조절
     private func setRegion() {
         let latitudes = vm.allCoordinates.map { $0.latitude }
         let longitudes = vm.allCoordinates.map { $0.longitude }

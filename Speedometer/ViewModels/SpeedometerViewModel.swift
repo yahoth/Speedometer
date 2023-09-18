@@ -11,6 +11,8 @@ import MapKit
 import Combine
 import CoreData
 
+//ToDo - ViewModel 분리하기: 디테일뷰로 가면 돌아오지 않으니, 데이터를 넘겨주고 deinit이 나을 것으로 예상됨. - 성능
+
 final class SpeedometerViewModel {
     let locationPublisher = LocationPublisher()
     let coredataManager = CoreDataManager()
@@ -41,6 +43,7 @@ final class SpeedometerViewModel {
     }
 
     func saveResult() {
+        speedometerResult?.image = image
         guard let speedometerResult else { return }
         coredataManager.createResult(result: speedometerResult)
     }

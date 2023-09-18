@@ -50,8 +50,4 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last
     }
-
-
-
-
 }
