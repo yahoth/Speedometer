@@ -42,7 +42,6 @@
 		76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */; };
 		76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */; };
 		76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */; };
-		76DED9D22AADA73C00C7660C /* SpeedmeterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */; };
 		76E9E30B2AA76E400072FA48 /* TempResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E9E30A2AA76E400072FA48 /* TempResult.storyboard */; };
 		76E9E30D2AA76EF00072FA48 /* TempResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30C2AA76EF00072FA48 /* TempResultViewController.swift */; };
 		76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E30E2AA862300072FA48 /* LocationPublisher.swift */; };
@@ -89,7 +88,6 @@
 		76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRowCell.swift; sourceTree = "<group>"; };
 		76DC9E692AB075B3002D2A87 /* SpeedometerResultContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpeedometerResultContainer.xcdatamodel; sourceTree = "<group>"; };
 		76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerNavigationController.swift; sourceTree = "<group>"; };
-		76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedmeterResult.swift; sourceTree = "<group>"; };
 		76E9E30A2AA76E400072FA48 /* TempResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempResult.storyboard; sourceTree = "<group>"; };
 		76E9E30C2AA76EF00072FA48 /* TempResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempResultViewController.swift; sourceTree = "<group>"; };
 		76E9E30E2AA862300072FA48 /* LocationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPublisher.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 		76E9E3182AA8D2900072FA48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				76DED9D12AADA73C00C7660C /* SpeedmeterResult.swift */,
 				76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */,
 				7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */,
 			);
@@ -396,7 +393,6 @@
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,
 				760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */,
 				76E9E30D2AA76EF00072FA48 /* TempResultViewController.swift in Sources */,
-				76DED9D22AADA73C00C7660C /* SpeedmeterResult.swift in Sources */,
 				7691B48D2AB1ABB200454E6A /* CoreDataManager.swift in Sources */,
 				760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */,
 				7603AFC42AB87FD1007A027C /* HomeViewModel.swift in Sources */,

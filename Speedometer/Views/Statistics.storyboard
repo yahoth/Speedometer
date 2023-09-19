@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,16 +41,16 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-EE-jW2">
-                                                            <rect key="frame" x="20" y="51" width="313" height="102"/>
+                                                            <rect key="frame" x="12" y="53" width="329" height="108"/>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="rkU-EE-jW2" secondAttribute="bottom" constant="20" id="9YS-Vk-bVH"/>
-                                                        <constraint firstItem="rkU-EE-jW2" firstAttribute="leading" secondItem="xZj-3I-QMa" secondAttribute="leading" constant="20" id="E6J-93-t3A"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rkU-EE-jW2" secondAttribute="bottom" constant="12" id="9YS-Vk-bVH"/>
+                                                        <constraint firstItem="rkU-EE-jW2" firstAttribute="leading" secondItem="xZj-3I-QMa" secondAttribute="leading" constant="12" id="E6J-93-t3A"/>
                                                         <constraint firstItem="rkU-EE-jW2" firstAttribute="centerX" secondItem="xZj-3I-QMa" secondAttribute="centerX" id="Xyx-MF-QP5"/>
                                                         <constraint firstItem="z9u-m8-qIR" firstAttribute="top" secondItem="xZj-3I-QMa" secondAttribute="top" constant="20" id="arc-hO-jAA"/>
                                                         <constraint firstItem="z9u-m8-qIR" firstAttribute="leading" secondItem="xZj-3I-QMa" secondAttribute="leading" constant="20" id="i8Y-Jv-b1h"/>
-                                                        <constraint firstItem="rkU-EE-jW2" firstAttribute="top" secondItem="z9u-m8-qIR" secondAttribute="bottom" constant="10" id="yGZ-a8-jlS"/>
+                                                        <constraint firstItem="rkU-EE-jW2" firstAttribute="top" secondItem="z9u-m8-qIR" secondAttribute="bottom" constant="12" id="yGZ-a8-jlS"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -89,7 +90,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
+        <image name="chart.bar.xaxis" catalog="system" width="128" height="97"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

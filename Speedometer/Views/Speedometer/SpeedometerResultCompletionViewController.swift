@@ -23,7 +23,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
     @IBOutlet weak var heartRateLabel: UILabel!
 
     @IBOutlet weak var imageView: UIImageView!
-    var vm: SpeedometerViewModel!
+    var vm: SpeedometerResultCompletionViewModel!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -44,7 +44,6 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
         let addPhotoButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoButtonTapped))
         navigationItem.rightBarButtonItems = [saveButton, addPhotoButton]
-
     }
 
     @objc func deleteResultAndDismiss() {
@@ -99,14 +98,15 @@ class SpeedometerResultCompletionViewController: UIViewController {
         vm.$span
             .receive(on: RunLoop.current)
             .compactMap { $0 }
-            .sink { span in
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] span in
                 self.addCircleOverlay(span: span)
             }.store(in: &subscriptions)
 
         vm.$speedometerResult
             .receive(on: RunLoop.main)
             .sink { [unowned self] result in
-                guard let result else { return }
+
                 self.titleLabel.text = result.title ?? result.defaultTitle
                 self.durationLabel.text = result.duration
                 self.timeLabel.text = result.timeString
@@ -118,7 +118,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
             }.store(in: &subscriptions)
         vm.$image
             .receive(on: RunLoop.main)
-            .sink { image in
+            .sink { [unowned self] image in
                 self.imageView.image = image
             }.store(in: &subscriptions)
     }
@@ -126,46 +126,63 @@ class SpeedometerResultCompletionViewController: UIViewController {
     private func addCircleOverlay(span: MKCoordinateSpan) {
         guard let startCoordinate = vm.allCoordinates.first, let endCoordinate = vm.allCoordinates.last else { return }
 
-        let radius = span.latitudeDelta * 0.1 * 111000
+//        let radius = span.latitudeDelta * 0.1 * 111000
+//
+//        let startCircle = MKCircle(center: startCoordinate, radius: radius) // 반지름 10미터
+//        let endCircle = MKCircle(center: endCoordinate, radius: radius)
+//        startCircle.title = "start"
+//        endCircle.title = "end"
+//        mapView.addOverlay(startCircle)
+//        mapView.addOverlay(endCircle)
+        let startAnnotation = MKPointAnnotation()
+        startAnnotation.coordinate = startCoordinate
+        startAnnotation.title = "start"
+        let endAnnotation = MKPointAnnotation()
+        endAnnotation.title = "end"
+        endAnnotation.coordinate = endCoordinate
 
-        let startCircle = MKCircle(center: startCoordinate, radius: radius) // 반지름 10미터
-        let endCircle = MKCircle(center: endCoordinate, radius: radius)
-        startCircle.title = "start"
-        endCircle.title = "end"
-        mapView.addOverlay(startCircle)
-        mapView.addOverlay(endCircle)
+        mapView.addAnnotations([startAnnotation, endAnnotation])
+
     }
-
 }
 
 extension SpeedometerResultCompletionViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let polyLine = overlay as? MKPolyline {
-            let renderer = MKPolylineRenderer(polyline: polyLine)
+        guard let polyLine = overlay as? MKPolyline else { return MKOverlayRenderer() }
+        let renderer = MKPolylineRenderer(polyline: polyLine)
 
-            renderer.lineWidth = 5.0
-            renderer.alpha = 1.0
-            renderer.strokeColor = .blue
+        renderer.lineWidth = 5
+        renderer.alpha = 1.0
+        renderer.strokeColor = .blue
+        return renderer
+    }
 
-            return renderer
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
 
-        } else if let circleOverlay = overlay as? MKCircle {
-            let renderer = MKCircleRenderer(overlay: circleOverlay)
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            (annotationView as? MKMarkerAnnotationView)?.glyphTintColor = .black
+            (annotationView as? MKMarkerAnnotationView)?.titleVisibility = .hidden
 
-            if circleOverlay.title == "start" {
-                renderer.fillColor = UIColor.red.withAlphaComponent(0.1)
-                renderer.strokeColor = UIColor.red
-            } else if circleOverlay.title == "end" {
-                renderer.fillColor = UIColor.blue.withAlphaComponent(0.1)
-                renderer.strokeColor = UIColor.blue
+            if annotation.title == "start" {
+                (annotationView as? MKMarkerAnnotationView)?.markerTintColor = .green
+                (annotationView as? MKMarkerAnnotationView)?.glyphText = "start"
+
+            } else {
+                (annotationView as? MKMarkerAnnotationView)?.markerTintColor = .red
+                (annotationView as? MKMarkerAnnotationView)?.glyphText = "end"
             }
-            renderer.lineWidth = 1
-
-            return renderer
-
         } else {
-            return MKOverlayRenderer()
+            annotationView?.annotation = annotation
         }
+
+        return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        vm.span = mapView.region.span
     }
 }
 
@@ -176,7 +193,7 @@ extension SpeedometerResultCompletionViewController: PHPickerViewControllerDeleg
         picker.dismiss(animated: true, completion: nil)
 
         if let itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+            itemProvider.loadObject(ofClass: UIImage.self) { [unowned self] image, error in
                 if let image = image as? UIImage {
                     self.vm.image = image
                 }

@@ -188,8 +188,6 @@ extension TestViewController: CLLocationManagerDelegate {
             if let previousLocation = self.previousLocation {
                 let distance = location.distance(from: previousLocation)
                 self.totalDistance += distance
-
-
             }
             previousLocation = location
         }

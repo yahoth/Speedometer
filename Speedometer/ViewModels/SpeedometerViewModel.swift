@@ -19,33 +19,31 @@ final class SpeedometerViewModel {
     let stopwatch = Stopwatch()
     var previousLocation: CLLocation?
     var startDate: Date?
-    var endDate: Date?
     @Published var logsOfSpeed: [Double] = []
     @Published var topSpeed: Double = 0
     @Published var totalDistance: CLLocationDistance = 0
     let currentSpeed = CurrentValueSubject<CLLocationSpeed, Never>(0)
     @Published var averageSpeed: Double = 0
-    @Published var alititude: Double = 0
+    @Published var altitude: Double = 0
     @Published var allCoordinates: [CLLocationCoordinate2D] = []
-    @Published var span: MKCoordinateSpan?
-    @Published var speedometerResult: SpeedmeterResult?
-    @Published var image: UIImage?
     var subscriptions = Set<AnyCancellable>()
 
     init() {
         bind()
     }
 
-    func createSpeedometerResult() {
-        guard let startDate else { return }
-        let result = SpeedmeterResult(startDate: startDate, endDate: Date(), time: stopwatch.totalElapsedTime, distance: totalDistance, averageSpeed: averageSpeed, topSpeed: topSpeed, altitude: alititude)
-        speedometerResult = result
-    }
-
-    func saveResult() {
-        speedometerResult?.image = image
-        guard let speedometerResult else { return }
-        coredataManager.createResult(result: speedometerResult)
+    func createSpeedometerResult() -> SavedResult {
+        guard let startDate else { return SavedResult() }
+        let result = SavedResult(context: coredataManager.context)
+        result.time = Int64(stopwatch.totalElapsedTime)
+        result.distance = totalDistance
+        result.averageSpeed = averageSpeed
+        result.topSpeed = topSpeed
+        result.altitude = altitude
+        result.startDate = startDate
+        result.endDate = Date()
+        coredataManager.saveContext()
+        return result
     }
 
     private func bind() {
@@ -67,7 +65,7 @@ final class SpeedometerViewModel {
                         self.totalDistance += distance
                         
                         if location.altitude > previousLocation.altitude {
-                            self.alititude += location.altitude - previousLocation.altitude
+                            self.altitude += location.altitude - previousLocation.altitude
                         }
                     }
                     self.previousLocation = location

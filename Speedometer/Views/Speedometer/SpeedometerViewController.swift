@@ -36,17 +36,16 @@ class SpeedometerViewController: UIViewController {
     private func setupMenu() {
         let start = UIAction(title: "start", image: UIImage(systemName: "play.fill"), handler: { [weak self] _ in self?.vm.startTracking() })
         let pause = UIAction(title: "pause", image: UIImage(systemName: "pause.fill"), handler: { [weak self] _ in self?.vm.pauseTracking() })
-        let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { [weak self] _ in
-            self?.vm.stopTracking()
-            self?.vm.createSpeedometerResult()
+        let stop  = UIAction(title: "stop", image: UIImage(systemName: "stop.fill")) { [unowned self] _ in
+            self.vm.stopTracking()
 
             let sb = UIStoryboard(name: "SpeedometerResultCompletion", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "SpeedometerResultCompletionViewController") as! SpeedometerResultCompletionViewController
-            vc.vm = self?.vm
-            self?.navigationController?.pushViewController(vc, animated: true)
+            vc.vm = SpeedometerResultCompletionViewModel(speedometerResult: self.vm.createSpeedometerResult(), allCoordinates: vm.allCoordinates)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
 
-        menuButton.menu = UIMenu(title: "hello", image: nil, identifier: nil, options: .displayInline, children: [start, pause, stop])
+        menuButton.menu = UIMenu(title: "menu", image: nil, identifier: nil, options: .displayInline, children: [start, pause, stop])
         menuButton.showsMenuAsPrimaryAction = true
     }
 
@@ -78,13 +77,13 @@ class SpeedometerViewController: UIViewController {
 
         vm.$topSpeed
             .receive(on: RunLoop.main)
-            .sink { speed in
+            .sink { [unowned self] speed in
                 self.topSpeedLabel.text = "\(speed)"
             }.store(in: &subscriptions)
 
-        vm.$alititude
+        vm.$altitude
             .receive(on: RunLoop.main)
-            .sink { altitude in
+            .sink { [unowned self] altitude in
                 self.altitudeLabel.text = "\(Int(round(altitude)))M"
             }.store(in: &subscriptions)
 

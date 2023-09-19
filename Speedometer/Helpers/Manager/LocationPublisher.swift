@@ -13,7 +13,7 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
     private let locationManager: CLLocationManager
 
     @Published private(set) var currentLocation: CLLocation?
-    @Published private (set) var authorizationStatus: CLAuthorizationStatus
+    @Published private(set) var authorizationStatus: CLAuthorizationStatus
 
     init(locationManager: CLLocationManager = CLLocationManager()) {
         self.locationManager = locationManager

@@ -10,7 +10,7 @@ import CoreData
 import Combine
 
 final class CoreDataManager {
-    private let context: NSManagedObjectContext
+    let context: NSManagedObjectContext
 
     var didChangeObjectsNotification: AnyPublisher<NotificationCenter.Publisher.Output, Never> {
         NotificationCenter.default.publisher(for: NSManagedObjectContext.didChangeObjectsNotification, object: context)
@@ -21,25 +21,25 @@ final class CoreDataManager {
         self.context = context
     }
 
-    func createResult(result: SpeedmeterResult) {
-        let newResult = SavedResult(context: context)
-        newResult.time = Int64(result.time)
-        newResult.distance = result.distance
-        newResult.averageSpeed = result.averageSpeed
-        newResult.topSpeed = result.topSpeed
-        newResult.altitude = result.altitude
-        newResult.mapView = result.mapView?.pngData()
-        newResult.image = result.image?.pngData()
-        newResult.title = result.title
-        newResult.startDate = result.startDate
-        newResult.endDate = result.endDate
-        newResult.image = result.image?.pngData()
-        newResult.isCompleted = true
-        saveContext()
-    }
+//    func createResult(result: SpeedmeterResult) {
+//        let newResult = SavedResult(context: context)
+//        newResult.time = Int64(result.time)
+//        newResult.distance = result.distance
+//        newResult.averageSpeed = result.averageSpeed
+//        newResult.topSpeed = result.topSpeed
+//        newResult.altitude = result.altitude
+//        newResult.mapView = result.mapView?.pngData()
+//        newResult.image = result.image?.pngData()
+//        newResult.title = result.title
+//        newResult.startDate = result.startDate
+//        newResult.endDate = result.endDate
+//        newResult.image = result.image?.pngData()
+//        newResult.isCompleted = true
+//        saveContext()
+//    }
 
-    private func saveContext() {
-//        guard context.hasChanges else { return }
+    func saveContext() {
+        guard context.hasChanges else { return }
         do {
             try context.save()
         } catch let error as NSError {
@@ -66,9 +66,6 @@ final class CoreDataManager {
 
     // Update
     func updateItem(itemToUpdate: SavedResult, newName: String, newCategory: String) {
-        //       itemToUpdate.name = newName
-        //       itemToUpdate.category = newCategory
-
         saveContext()
     }
 
@@ -87,7 +84,6 @@ final class CoreDataManager {
             for item in items {
                 context.delete(item)
             }
-
             // Save Changes
             saveContext()
 
