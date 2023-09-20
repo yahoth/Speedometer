@@ -21,7 +21,7 @@ class StatisticsDetailViewController: UIViewController {
     @IBOutlet weak var averageView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var distanceView: UIView!
-    @IBOutlet weak var durationView: UIView!
+    @IBOutlet weak var timeView: UIView!
 
     var vm: StatisticsDetailViewModel!
     var subscriptions = Set<AnyCancellable>()
@@ -43,6 +43,7 @@ class StatisticsDetailViewController: UIViewController {
     func configureUI(result: SavedResult) {
         if let mapImageView = result.mapView {
             mapView.image = UIImage(data: mapImageView)
+            mapView.layer.cornerRadius = 8
         }
 
         if let image = result.image {
@@ -57,9 +58,9 @@ class StatisticsDetailViewController: UIViewController {
     }
 
     func configureViewRadius() {
-        [averageView, topView, distanceView, durationView].forEach { view in
+        [averageView, topView, distanceView, timeView].forEach { view in
             view?.layer.cornerRadius = 8
-            view?.backgroundColor = .gray.withAlphaComponent(0.5)
+            view?.backgroundColor = .gray.withAlphaComponent(0.8)
         }
     }
 }

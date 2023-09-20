@@ -48,6 +48,9 @@
 		76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3102AA87F620072FA48 /* Stopwatch.swift */; };
 		76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */; };
 		76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */; };
+		76F5CA982ABB1A4700DC358C /* tempStatisticsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */; };
+		76F5CA9C2ABB396400DC358C /* TempDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */; };
+		76F5CA9E2ABB468000DC358C /* TempStatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		76E9E3102AA87F620072FA48 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + interpolate.swift"; sourceTree = "<group>"; };
+		76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempStatisticsDetail.swift; sourceTree = "<group>"; };
+		76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempDetail.storyboard; sourceTree = "<group>"; };
+		76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatisticsDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,9 @@
 				76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */,
 				7603AFA72AB2F219007A027C /* StatisticsDetail.storyboard */,
 				7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */,
+				76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */,
+				76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */,
+				76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -355,6 +364,7 @@
 				7693D4432AAD9C34005E14E0 /* MapSnapshotAdjustmentView.storyboard in Resources */,
 				764FD70E2AA49BE100C4ECF1 /* Assets.xcassets in Resources */,
 				76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */,
+				76F5CA9C2ABB396400DC358C /* TempDetail.storyboard in Resources */,
 				7693D43E2AAD98A8005E14E0 /* Test.storyboard in Resources */,
 				76E9E30B2AA76E400072FA48 /* TempResult.storyboard in Resources */,
 			);
@@ -372,6 +382,7 @@
 				7693D4452AAD9C52005E14E0 /* MapSnapshotAdjustmentViewController.swift in Sources */,
 				764FD7092AA49BE000C4ECF1 /* TestViewController.swift in Sources */,
 				7603AFAA2AB2F22C007A027C /* StatisticsDetailViewController.swift in Sources */,
+				76F5CA982ABB1A4700DC358C /* tempStatisticsDetail.swift in Sources */,
 				76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */,
 				7693D4492AAD9E90005E14E0 /* SpeedometerResultCompletionViewController.swift in Sources */,
 				76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */,
@@ -388,6 +399,7 @@
 				7603AFBA2AB328E2007A027C /* SavedResult+CoreDataClass.swift in Sources */,
 				76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */,
 				7603AFAC2AB303D6007A027C /* DateFormatters.swift in Sources */,
+				76F5CA9E2ABB468000DC358C /* TempStatisticsDetailViewController.swift in Sources */,
 				76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */,
 				76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,

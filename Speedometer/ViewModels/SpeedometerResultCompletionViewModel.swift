@@ -14,6 +14,7 @@ class SpeedometerResultCompletionViewModel {
     @Published var speedometerResult: SavedResult
     @Published var span: MKCoordinateSpan?
     @Published var image: UIImage?
+    @Published var mapView: UIImage?
     @Published var allCoordinates: [CLLocationCoordinate2D]
 
     init(speedometerResult: SavedResult, allCoordinates: [CLLocationCoordinate2D]) {
@@ -24,6 +25,9 @@ class SpeedometerResultCompletionViewModel {
     func saveResult() {
         if let image {
             speedometerResult.image = image.pngData()
+        }
+        if let mapView {
+            speedometerResult.mapView = mapView.pngData()
         }
         speedometerResult.isCompleted = true
         coreDataManager.saveContext()

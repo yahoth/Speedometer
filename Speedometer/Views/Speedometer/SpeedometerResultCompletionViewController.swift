@@ -32,18 +32,22 @@ class SpeedometerResultCompletionViewController: UIViewController {
         mapView.delegate = self
         setRegion()
         setNavigationBar()
+        addAnnotations()
     }
 
     private func setNavigationBar() {
         self.navigationItem.setHidesBackButton(true, animated: true)
+
         let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveResultAndDismiss))
-        navigationItem.rightBarButtonItem = saveButton
 
         let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteResultAndDismiss))
         navigationItem.leftBarButtonItem = deleteButton
 
         let addPhotoButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoButtonTapped))
-        navigationItem.rightBarButtonItems = [saveButton, addPhotoButton]
+
+        let captureMapViewButton = UIBarButtonItem(title: "capture", style: .plain, target: self, action: #selector(captureMapViewButtonTapped))
+
+        navigationItem.rightBarButtonItems = [saveButton, addPhotoButton, captureMapViewButton]
     }
 
     @objc func deleteResultAndDismiss() {
@@ -57,6 +61,10 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
     @objc func addPhotoButtonTapped() {
         addPhoto()
+    }
+
+    @objc func captureMapViewButtonTapped() {
+        vm.mapView = captureMapAndOverlays(mapView: mapView)
     }
 
     func addPhoto() {
@@ -95,18 +103,17 @@ class SpeedometerResultCompletionViewController: UIViewController {
                 mapView.addOverlay(lineDraw)
             }.store(in: &subscriptions)
 
-        vm.$span
-            .receive(on: RunLoop.current)
-            .compactMap { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] span in
-                self.addCircleOverlay(span: span)
-            }.store(in: &subscriptions)
+//        vm.$span
+//            .receive(on: RunLoop.current)
+//            .compactMap { $0 }
+//            .receive(on: DispatchQueue.main)
+//            .sink { [unowned self] span in
+//                self.addAnnotations(span: span)
+//            }.store(in: &subscriptions)
 
         vm.$speedometerResult
             .receive(on: RunLoop.main)
             .sink { [unowned self] result in
-
                 self.titleLabel.text = result.title ?? result.defaultTitle
                 self.durationLabel.text = result.duration
                 self.timeLabel.text = result.timeString
@@ -123,7 +130,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
             }.store(in: &subscriptions)
     }
 
-    private func addCircleOverlay(span: MKCoordinateSpan) {
+    private func addAnnotations() {
         guard let startCoordinate = vm.allCoordinates.first, let endCoordinate = vm.allCoordinates.last else { return }
 
 //        let radius = span.latitudeDelta * 0.1 * 111000
@@ -142,7 +149,14 @@ class SpeedometerResultCompletionViewController: UIViewController {
         endAnnotation.coordinate = endCoordinate
 
         mapView.addAnnotations([startAnnotation, endAnnotation])
+    }
 
+    func captureMapAndOverlays(mapView: MKMapView) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: mapView.bounds.size)
+        let image = renderer.image { ctx in
+            mapView.drawHierarchy(in: mapView.bounds, afterScreenUpdates: true)
+        }
+        return image
     }
 }
 
