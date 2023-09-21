@@ -51,6 +51,8 @@
 		76F5CA982ABB1A4700DC358C /* tempStatisticsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */; };
 		76F5CA9C2ABB396400DC358C /* TempDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */; };
 		76F5CA9E2ABB468000DC358C /* TempStatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */; };
+		76F5CAA42ABC1EDA00DC358C /* TempRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */; };
+		76F5CAA62ABC1F1800DC358C /* TempStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempStatisticsDetail.swift; sourceTree = "<group>"; };
 		76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempDetail.storyboard; sourceTree = "<group>"; };
 		76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatisticsDetailViewController.swift; sourceTree = "<group>"; };
+		76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRowCell.swift; sourceTree = "<group>"; };
+		76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatisticsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +185,6 @@
 			children = (
 				7693D4402AAD99A4005E14E0 /* Home.storyboard */,
 				760CA4852AAA015D00E1E183 /* HomeViewController.swift */,
-				7603AFC32AB87FD1007A027C /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -190,8 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				7609EB622AB0930B00279A4E /* Statistics.storyboard */,
+				76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */,
 				760CA4812AAA012900E1E183 /* StatisticsViewController.swift */,
 				76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */,
+				76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */,
 				7603AFA72AB2F219007A027C /* StatisticsDetail.storyboard */,
 				7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */,
 				76F5CA972ABB1A4700DC358C /* tempStatisticsDetail.swift */,
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				7603AFC12AB86F7E007A027C /* MainTabBarViewModel.swift */,
+				7603AFC32AB87FD1007A027C /* HomeViewModel.swift */,
 				760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */,
 				7603AFBD2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift */,
 				7691B4982AB206E500454E6A /* StatisticsViewModel.swift */,
@@ -392,6 +398,8 @@
 				760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */,
 				760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */,
 				760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */,
+				76F5CAA62ABC1F1800DC358C /* TempStatisticsViewController.swift in Sources */,
+				76F5CAA42ABC1EDA00DC358C /* TempRowCell.swift in Sources */,
 				7691B4992AB206E500454E6A /* StatisticsViewModel.swift in Sources */,
 				7603AFC22AB86F7E007A027C /* MainTabBarViewModel.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */,

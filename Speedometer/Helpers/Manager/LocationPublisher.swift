@@ -50,4 +50,23 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last
     }
+
+    func reverseGeocodeLocation(_ startCoordinate: CLLocationCoordinate2D, _ endCoordinate: CLLocationCoordinate2D) async -> (String, String) {
+        let geocoder = CLGeocoder()
+
+        let startLocation = CLLocation(latitude: startCoordinate.latitude, longitude: startCoordinate.longitude)
+        let endLocation = CLLocation(latitude: endCoordinate.latitude, longitude: endCoordinate.longitude)
+        let errorResult = ("error", "error")
+        do {
+            guard let startPlacemark = try await geocoder.reverseGeocodeLocation(startLocation).first else { return errorResult }
+            guard let endPlacemark = try await geocoder.reverseGeocodeLocation(endLocation).first else { return errorResult }
+
+            let start = "\(startPlacemark.locality ?? "error"), \(startPlacemark.subLocality ?? "error")"
+            let end = "\(endPlacemark.locality ?? "error"), \(endPlacemark.subLocality ?? "error")"
+            return (start, end)
+        } catch let error {
+            print(error.localizedDescription)
+            return errorResult
+        }
+    }
 }

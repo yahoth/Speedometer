@@ -45,9 +45,9 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
         let addPhotoButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoButtonTapped))
 
-        let captureMapViewButton = UIBarButtonItem(title: "capture", style: .plain, target: self, action: #selector(captureMapViewButtonTapped))
+//        let captureMapViewButton = UIBarButtonItem(title: "capture", style: .plain, target: self, action: #selector(captureMapViewButtonTapped))
 
-        navigationItem.rightBarButtonItems = [saveButton, addPhotoButton, captureMapViewButton]
+        navigationItem.rightBarButtonItems = [saveButton, addPhotoButton]
     }
 
     @objc func deleteResultAndDismiss() {
@@ -56,6 +56,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
     @objc func saveResultAndDismiss() {
         vm.saveResult()
+        vm.mapView = captureMapAndOverlays(mapView: mapView)
         self.dismiss(animated: true)
     }
 
@@ -63,9 +64,8 @@ class SpeedometerResultCompletionViewController: UIViewController {
         addPhoto()
     }
 
-    @objc func captureMapViewButtonTapped() {
-        vm.mapView = captureMapAndOverlays(mapView: mapView)
-    }
+//    @objc func captureMapViewButtonTapped() {
+//    }
 
     func addPhoto() {
         var config = PHPickerConfiguration(photoLibrary: .shared())
@@ -114,7 +114,7 @@ class SpeedometerResultCompletionViewController: UIViewController {
         vm.$speedometerResult
             .receive(on: RunLoop.main)
             .sink { [unowned self] result in
-                self.titleLabel.text = result.title ?? result.defaultTitle
+//                self.titleLabel.text = result.title ?? result.defaultTitle
                 self.durationLabel.text = result.duration
                 self.timeLabel.text = result.timeString
                 self.distanceLabel.text = result.distanceString
@@ -123,6 +123,15 @@ class SpeedometerResultCompletionViewController: UIViewController {
                 self.altitudeLabel.text = result.altitudeString
                 self.heartRateLabel.text = "0BPM"
             }.store(in: &subscriptions)
+
+        vm.$startAndEndAddress
+            .subscribe(on: DispatchQueue.global())
+            .compactMap { $0 }
+            .receive(on: RunLoop.main)
+            .sink { address in
+                self.titleLabel.text = "\(address.0) ->  \(address.1)"
+            }.store(in: &subscriptions)
+
         vm.$image
             .receive(on: RunLoop.main)
             .sink { [unowned self] image in

@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
 
     private func updateNavigationItem(vc: UIViewController) {
         switch vc {
-        case is StatisticsViewController:
+        case is TempStatisticsViewController:
             let resetButton = UIBarButtonItem(title: "reset", style: .plain, target: self, action: #selector(reset))
             self.navigationItem.rightBarButtonItems = [resetButton]
         default:
@@ -39,5 +39,6 @@ class MainTabBarController: UITabBarController {
 
 extension MainTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        updateNavigationItem(vc: viewController)    }
+        updateNavigationItem(vc: viewController)
+    }
 }
