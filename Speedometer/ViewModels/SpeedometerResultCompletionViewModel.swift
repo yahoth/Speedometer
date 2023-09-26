@@ -12,12 +12,15 @@ import MapKit
 class SpeedometerResultCompletionViewModel {
     let coreDataManager = CoreDataManager()
     let locationPublisher = LocationPublisher()
+    var imagePickerDelegate = ImagePickerDelegate()
+
     @Published var speedometerResult: SavedResult
     @Published var span: MKCoordinateSpan?
     @Published var image: UIImage?
     @Published var mapView: UIImage?
     @Published var allCoordinates: [CLLocationCoordinate2D]
     @Published var startAndEndAddress: (String, String)?
+    var subscriptions = Set<AnyCancellable>()
 
     var startCoordinate: CLLocationCoordinate2D {
         guard let coordinate = allCoordinates.first else { return CLLocationCoordinate2D()}
@@ -29,13 +32,22 @@ class SpeedometerResultCompletionViewModel {
         return coordinate
     }
 
-    init(speedometerResult: SavedResult, allCoordinates: [CLLocationCoordinate2D]) {
+    init( speedometerResult: SavedResult, allCoordinates: [CLLocationCoordinate2D]) {
         self.speedometerResult = speedometerResult
         self.allCoordinates = allCoordinates
 
         Task {
             await reverseGeocodeLocation()
         }
+        bind()
+    }
+
+    func bind() {
+        imagePickerDelegate.selectedImagePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { image in
+                self.image = image
+            }.store(in: &subscriptions)
     }
 
     func saveResult() {

@@ -45,8 +45,6 @@ class SpeedometerResultCompletionViewController: UIViewController {
 
         let addPhotoButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoButtonTapped))
 
-//        let captureMapViewButton = UIBarButtonItem(title: "capture", style: .plain, target: self, action: #selector(captureMapViewButtonTapped))
-
         navigationItem.rightBarButtonItems = [saveButton, addPhotoButton]
     }
 
@@ -55,28 +53,13 @@ class SpeedometerResultCompletionViewController: UIViewController {
     }
 
     @objc func saveResultAndDismiss() {
-        vm.saveResult()
         vm.mapView = captureMapAndOverlays(mapView: mapView)
+        vm.saveResult()
         self.dismiss(animated: true)
     }
 
     @objc func addPhotoButtonTapped() {
-        addPhoto()
-    }
-
-//    @objc func captureMapViewButtonTapped() {
-//    }
-
-    func addPhoto() {
-        var config = PHPickerConfiguration(photoLibrary: .shared())
-        config.filter = .images
-        config.preferredAssetRepresentationMode = .current
-        config.selection = .ordered
-        config.selectionLimit = 1
-
-        let picker = PHPickerViewController(configuration: config)
-        picker.delegate = self
-        present(picker, animated: true)
+        vm.imagePickerDelegate.presentPhotoPicker(from: self)
     }
 
     // 출발점과 종착점을 고려하여 MapView의 center, span을 조절
@@ -103,18 +86,9 @@ class SpeedometerResultCompletionViewController: UIViewController {
                 mapView.addOverlay(lineDraw)
             }.store(in: &subscriptions)
 
-//        vm.$span
-//            .receive(on: RunLoop.current)
-//            .compactMap { $0 }
-//            .receive(on: DispatchQueue.main)
-//            .sink { [unowned self] span in
-//                self.addAnnotations(span: span)
-//            }.store(in: &subscriptions)
-
         vm.$speedometerResult
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] result in
-//                self.titleLabel.text = result.title ?? result.defaultTitle
                 self.durationLabel.text = result.duration
                 self.timeLabel.text = result.timeString
                 self.distanceLabel.text = result.distanceString
@@ -127,13 +101,13 @@ class SpeedometerResultCompletionViewController: UIViewController {
         vm.$startAndEndAddress
             .subscribe(on: DispatchQueue.global())
             .compactMap { $0 }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { address in
                 self.titleLabel.text = "\(address.0) ->  \(address.1)"
             }.store(in: &subscriptions)
 
         vm.$image
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] image in
                 self.imageView.image = image
             }.store(in: &subscriptions)
@@ -142,14 +116,6 @@ class SpeedometerResultCompletionViewController: UIViewController {
     private func addAnnotations() {
         guard let startCoordinate = vm.allCoordinates.first, let endCoordinate = vm.allCoordinates.last else { return }
 
-//        let radius = span.latitudeDelta * 0.1 * 111000
-//
-//        let startCircle = MKCircle(center: startCoordinate, radius: radius) // 반지름 10미터
-//        let endCircle = MKCircle(center: endCoordinate, radius: radius)
-//        startCircle.title = "start"
-//        endCircle.title = "end"
-//        mapView.addOverlay(startCircle)
-//        mapView.addOverlay(endCircle)
         let startAnnotation = MKPointAnnotation()
         startAnnotation.coordinate = startCoordinate
         startAnnotation.title = "start"
@@ -202,25 +168,5 @@ extension SpeedometerResultCompletionViewController: MKMapViewDelegate {
         }
 
         return annotationView
-    }
-
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        vm.span = mapView.region.span
-    }
-}
-
-extension SpeedometerResultCompletionViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        let itemProvider = results.first?.itemProvider
-
-        picker.dismiss(animated: true, completion: nil)
-
-        if let itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { [unowned self] image, error in
-                if let image = image as? UIImage {
-                    self.vm.image = image
-                }
-            }
-        }
     }
 }

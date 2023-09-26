@@ -51,19 +51,19 @@ class SpeedometerViewController: UIViewController {
 
     private func bind() {
         vm.currentSpeed
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] speed in
                 self.currentSpeedLabel.text = speed == 0.0 ? "0" : "\(speed)"
             }.store(in: &subscriptions)
 
         vm.$averageSpeed
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self ] averageSpeed in
                 self.averageSpeedLabel.text = averageSpeed.isNaN ? "0" : "\(averageSpeed)"
             }.store(in: &subscriptions)
 
         vm.$totalDistance
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] distance in
                 switch distance {
                 case 0..<1000:
@@ -76,19 +76,19 @@ class SpeedometerViewController: UIViewController {
             }.store(in: &subscriptions)
 
         vm.$topSpeed
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] speed in
                 self.topSpeedLabel.text = "\(speed)"
             }.store(in: &subscriptions)
 
         vm.$altitude
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] altitude in
                 self.altitudeLabel.text = "\(Int(round(altitude)))M"
             }.store(in: &subscriptions)
 
         vm.stopwatch.$totalElapsedTime
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [unowned self] time in
                 let hours = time / 3600
                 let minutes = (time % 3600) / 60

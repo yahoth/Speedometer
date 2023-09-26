@@ -69,4 +69,23 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
             return errorResult
         }
     }
+
+    func getPlaceMark(for location: CLLocation) -> Future<CLPlacemark, Error> {
+
+        let geocoder = CLGeocoder()
+        return Future() { promise in
+            geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+                guard let placemark = placemarks?.first else {
+                    promise(.failure(CLError(.geocodeFoundNoResult)))
+                    return
+                }
+
+                promise(.success(placemark))
+            }
+        }
+    }
 }

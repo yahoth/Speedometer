@@ -21,23 +21,6 @@ final class CoreDataManager {
         self.context = context
     }
 
-//    func createResult(result: SpeedmeterResult) {
-//        let newResult = SavedResult(context: context)
-//        newResult.time = Int64(result.time)
-//        newResult.distance = result.distance
-//        newResult.averageSpeed = result.averageSpeed
-//        newResult.topSpeed = result.topSpeed
-//        newResult.altitude = result.altitude
-//        newResult.mapView = result.mapView?.pngData()
-//        newResult.image = result.image?.pngData()
-//        newResult.title = result.title
-//        newResult.startDate = result.startDate
-//        newResult.endDate = result.endDate
-//        newResult.image = result.image?.pngData()
-//        newResult.isCompleted = true
-//        saveContext()
-//    }
-
     func saveContext() {
         guard context.hasChanges else { return }
         do {
