@@ -9,6 +9,7 @@
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="mapView" optional="YES" attributeType="Binary"/>
+        <attribute name="mode" optional="YES" attributeType="String"/>
         <attribute name="startAddress" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

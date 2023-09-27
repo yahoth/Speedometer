@@ -22,12 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Request permission to use location services
 //        let locationManager = CLLocationManager()
 //        locationManager.requestWhenInUseAuthorization()
+
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "isFirstLaunch") == nil {
+            defaults.set(true, forKey: "isFirstLaunch")
+            defaults.set("cycling", forKey: "Mode")
+        }
 
         return true
     }

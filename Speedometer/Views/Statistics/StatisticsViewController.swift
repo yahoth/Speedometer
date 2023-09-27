@@ -1,17 +1,15 @@
 //
 //  StatisticsViewController.swift
-//  GPSPractice
+//  Speedometer
 //
-//  Created by TAEHYOUNG KIM on 2023/09/07.
+//  Created by TAEHYOUNG KIM on 2023/09/21.
 //
 
 import UIKit
-import CoreData
 import Combine
-import SwiftUI
-
 
 class StatisticsViewController: UIViewController {
+
     let vm = StatisticsViewModel()
 
     @IBOutlet weak var tableView: UITableView!
@@ -44,13 +42,10 @@ class StatisticsViewController: UIViewController {
 
         vm.selectedResult
             .sink { result in
-                let sb = UIStoryboard(name: "TempDetail", bundle: nil)
-                let vc = sb.instantiateViewController(withIdentifier: "TempStatisticsDetailViewController") as! TempStatisticsDetailViewController
-//                vc.vm = StatisticsDetailViewModel(result: result)
+                let sb = UIStoryboard(name: "StatisticsDetail", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "StatisticsDetailViewController") as! StatisticsDetailViewController
+                vc.vm = StatisticsDetailViewModel(result: result)
                 self.navigationController?.pushViewController(vc, animated: true)
-//                let tempView = tempStatisticsDetail(result: result)
-//                let vc = UIHostingController(rootView: tempView)
-//                self.navigationController?.pushViewController(vc, animated: true)
             }.store(in: &subscriptions)
     }
 
@@ -85,8 +80,8 @@ extension StatisticsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return tableView.bounds.size.height * 0.4
-        return tableView.bounds.size.width * 4 / 3
+        return tableView.bounds.size.height * 0.2
+//        return tableView.bounds.size.width * 4 / 3
     }
 
     // 왼쪽 Swipe하여 아이템 삭제

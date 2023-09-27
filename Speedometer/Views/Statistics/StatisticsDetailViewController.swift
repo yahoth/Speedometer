@@ -2,7 +2,7 @@
 //  StatisticsDetailViewController.swift
 //  Speedometer
 //
-//  Created by TAEHYOUNG KIM on 2023/09/14.
+//  Created by TAEHYOUNG KIM on 2023/09/21.
 //
 
 import UIKit
@@ -11,25 +11,42 @@ import Combine
 class StatisticsDetailViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var mapView: UIImageView!
+    @IBOutlet weak var bottomContainerStack: UIStackView!
+    @IBOutlet weak var modeImageView: UIImageView!
 
-    @IBOutlet weak var averageSpeedLabel: UILabel!
-    @IBOutlet weak var topSpeedLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var startAddress: UILabel!
+    @IBOutlet weak var endAddress: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-
-    @IBOutlet weak var averageView: UIView!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var distanceView: UIView!
-    @IBOutlet weak var timeView: UIView!
-
-    var vm: StatisticsDetailViewModel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
+    @IBOutlet weak var topSpeedLabel: UILabel!
+    
+    var vm:  StatisticsDetailViewModel!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewRadius()
+        applyCommonStyles()
+        applyTopContainerStyles()
+        applyBottomContainerStyles()
         bind()
+    }
+
+    func applyCommonStyles() {
+        [imageView, topContainerView, bottomContainerStack, mapView, modeImageView].forEach {
+            $0.layer.cornerRadius = 16
+        }
+    }
+
+    func applyTopContainerStyles() {
+        topContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+
+    func applyBottomContainerStyles() {
+        bottomContainerStack.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
 
     func bind() {
@@ -43,7 +60,6 @@ class StatisticsDetailViewController: UIViewController {
     func configureUI(result: SavedResult) {
         if let mapImageView = result.mapView {
             mapView.image = UIImage(data: mapImageView)
-            mapView.layer.cornerRadius = 8
         }
 
         if let image = result.image {
@@ -51,16 +67,16 @@ class StatisticsDetailViewController: UIViewController {
             imageView.contentMode = .scaleAspectFill
         }
 
+        if let modeStr = result.mode, let mode = Mode(rawValue: modeStr) {
+            modeImageView.image = UIImage(systemName: mode.image)
+        }
+
         averageSpeedLabel.text = result.averageSpeedString
-        topSpeedLabel.text = "\(result.topSpeed)"
+        topSpeedLabel.text = "\(result.topSpeed)KM/H"
         distanceLabel.text = result.distanceString
         timeLabel.text = result.timeString
-    }
-
-    func configureViewRadius() {
-        [averageView, topView, distanceView, timeView].forEach { view in
-            view?.layer.cornerRadius = 8
-            view?.backgroundColor = .gray.withAlphaComponent(0.8)
-        }
+        altitudeLabel.text = result.altitudeString
+        startAddress.text = result.startAddress
+        endAddress.text = result.endAddress
     }
 }

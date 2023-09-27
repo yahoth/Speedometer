@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import PhotosUI
 
-class ImagePickerDelegate: NSObject, PHPickerViewControllerDelegate {
+class ImagePicker: NSObject, PHPickerViewControllerDelegate {
     let selectedImagePublisher = PassthroughSubject<UIImage?, Never>()
 
     weak var viewController: UIViewController?

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7603AFA82AB2F219007A027C /* StatisticsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7603AFA72AB2F219007A027C /* StatisticsDetail.storyboard */; };
-		7603AFAA2AB2F22C007A027C /* StatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */; };
 		7603AFAC2AB303D6007A027C /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFAB2AB303D6007A027C /* DateFormatters.swift */; };
 		7603AFBA2AB328E2007A027C /* SavedResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */; };
 		7603AFBC2AB83ACD007A027C /* StatisticsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFBB2AB83ACD007A027C /* StatisticsDetailViewModel.swift */; };
@@ -18,10 +16,10 @@
 		7603AFC42AB87FD1007A027C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603AFC32AB87FD1007A027C /* HomeViewModel.swift */; };
 		7609EB632AB0930B00279A4E /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7609EB622AB0930B00279A4E /* Statistics.storyboard */; };
 		760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */; };
-		760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4812AAA012900E1E183 /* StatisticsViewController.swift */; };
 		760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4832AAA014100E1E183 /* SettingViewController.swift */; };
 		760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4852AAA015D00E1E183 /* HomeViewController.swift */; };
 		760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */; };
+		761DF4902AC41AFE005D2E8F /* CustomCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761DF48F2AC41AFE005D2E8F /* CustomCardButton.swift */; };
 		764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */; };
 		764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */; };
 		764FD7092AA49BE000C4ECF1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD7082AA49BE000C4ECF1 /* TestViewController.swift */; };
@@ -40,7 +38,6 @@
 		76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */; };
 		76DC3A6D2AA9EF9400066052 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6C2AA9EF9400066052 /* Main.storyboard */; };
 		76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */; };
-		76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */; };
 		76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DC9E682AB075B3002D2A87 /* ResultContainer.xcdatamodeld */; };
 		76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */; };
 		76E9E30B2AA76E400072FA48 /* TempResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E9E30A2AA76E400072FA48 /* TempResult.storyboard */; };
@@ -49,15 +46,13 @@
 		76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3102AA87F620072FA48 /* Stopwatch.swift */; };
 		76E9E3132AA8C77F0072FA48 /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */; };
 		76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */; };
-		76F5CA9C2ABB396400DC358C /* TempDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */; };
-		76F5CA9E2ABB468000DC358C /* TempStatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */; };
-		76F5CAA42ABC1EDA00DC358C /* TempRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */; };
-		76F5CAA62ABC1F1800DC358C /* TempStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */; };
+		76F5CA9C2ABB396400DC358C /* StatisticsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F5CA9B2ABB396400DC358C /* StatisticsDetail.storyboard */; };
+		76F5CA9E2ABB468000DC358C /* StatisticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CA9D2ABB468000DC358C /* StatisticsDetailViewController.swift */; };
+		76F5CAA42ABC1EDA00DC358C /* StatisticsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA32ABC1EDA00DC358C /* StatisticsRowCell.swift */; };
+		76F5CAA62ABC1F1800DC358C /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F5CAA52ABC1F1800DC358C /* StatisticsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7603AFA72AB2F219007A027C /* StatisticsDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StatisticsDetail.storyboard; sourceTree = "<group>"; };
-		7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDetailViewController.swift; sourceTree = "<group>"; };
 		7603AFAB2AB303D6007A027C /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		7603AFB92AB328E2007A027C /* SavedResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedResult+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7603AFBB2AB83ACD007A027C /* StatisticsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDetailViewModel.swift; sourceTree = "<group>"; };
@@ -67,10 +62,10 @@
 		7603AFC32AB87FD1007A027C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7609EB622AB0930B00279A4E /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Statistics.storyboard; path = Speedometer/Views/Statistics.storyboard; sourceTree = SOURCE_ROOT; };
 		760CA47B2AA9FD7A00E1E183 /* SpeedometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewController.swift; sourceTree = "<group>"; };
-		760CA4812AAA012900E1E183 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		760CA4832AAA014100E1E183 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		760CA4852AAA015D00E1E183 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		760CA4872AAA081700E1E183 /* SpeedometerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerViewModel.swift; sourceTree = "<group>"; };
+		761DF48F2AC41AFE005D2E8F /* CustomCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardButton.swift; sourceTree = "<group>"; };
 		764FD7012AA49BE000C4ECF1 /* Speedometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764FD7042AA49BE000C4ECF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764FD7062AA49BE000C4ECF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +86,6 @@
 		76DC3A682AA9DD8C00066052 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		76DC3A6C2AA9EF9400066052 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		76DC3A6E2AA9FBE400066052 /* Speedometer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Speedometer.storyboard; sourceTree = "<group>"; };
-		76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRowCell.swift; sourceTree = "<group>"; };
 		76DC9E692AB075B3002D2A87 /* SpeedometerResultContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpeedometerResultContainer.xcdatamodel; sourceTree = "<group>"; };
 		76DED9CF2AADA41100C7660C /* SpeedometerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerNavigationController.swift; sourceTree = "<group>"; };
 		76E9E30A2AA76E400072FA48 /* TempResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempResult.storyboard; sourceTree = "<group>"; };
@@ -100,10 +94,10 @@
 		76E9E3102AA87F620072FA48 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76E9E3122AA8C77F0072FA48 /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		76E9E3142AA8D0F50072FA48 /* UIColor + interpolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + interpolate.swift"; sourceTree = "<group>"; };
-		76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempDetail.storyboard; sourceTree = "<group>"; };
-		76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatisticsDetailViewController.swift; sourceTree = "<group>"; };
-		76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRowCell.swift; sourceTree = "<group>"; };
-		76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatisticsViewController.swift; sourceTree = "<group>"; };
+		76F5CA9B2ABB396400DC358C /* StatisticsDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StatisticsDetail.storyboard; sourceTree = "<group>"; };
+		76F5CA9D2ABB468000DC358C /* StatisticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDetailViewController.swift; sourceTree = "<group>"; };
+		76F5CAA32ABC1EDA00DC358C /* StatisticsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRowCell.swift; sourceTree = "<group>"; };
+		76F5CAA52ABC1F1800DC358C /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +179,7 @@
 			children = (
 				7693D4402AAD99A4005E14E0 /* Home.storyboard */,
 				760CA4852AAA015D00E1E183 /* HomeViewController.swift */,
+				761DF48F2AC41AFE005D2E8F /* CustomCardButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -193,14 +188,10 @@
 			isa = PBXGroup;
 			children = (
 				7609EB622AB0930B00279A4E /* Statistics.storyboard */,
-				76F5CAA52ABC1F1800DC358C /* TempStatisticsViewController.swift */,
-				760CA4812AAA012900E1E183 /* StatisticsViewController.swift */,
-				76DC9E662AB06C5A002D2A87 /* StatisticsRowCell.swift */,
-				76F5CAA32ABC1EDA00DC358C /* TempRowCell.swift */,
-				7603AFA72AB2F219007A027C /* StatisticsDetail.storyboard */,
-				7603AFA92AB2F22C007A027C /* StatisticsDetailViewController.swift */,
-				76F5CA9B2ABB396400DC358C /* TempDetail.storyboard */,
-				76F5CA9D2ABB468000DC358C /* TempStatisticsDetailViewController.swift */,
+				76F5CAA52ABC1F1800DC358C /* StatisticsViewController.swift */,
+				76F5CAA32ABC1EDA00DC358C /* StatisticsRowCell.swift */,
+				76F5CA9B2ABB396400DC358C /* StatisticsDetail.storyboard */,
+				76F5CA9D2ABB468000DC358C /* StatisticsDetailViewController.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -362,7 +353,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7693D4412AAD99A4005E14E0 /* Home.storyboard in Resources */,
-				7603AFA82AB2F219007A027C /* StatisticsDetail.storyboard in Resources */,
 				764FD7112AA49BE100C4ECF1 /* LaunchScreen.storyboard in Resources */,
 				7609EB632AB0930B00279A4E /* Statistics.storyboard in Resources */,
 				76DC3A6D2AA9EF9400066052 /* Main.storyboard in Resources */,
@@ -370,7 +360,7 @@
 				7693D4432AAD9C34005E14E0 /* MapSnapshotAdjustmentView.storyboard in Resources */,
 				764FD70E2AA49BE100C4ECF1 /* Assets.xcassets in Resources */,
 				76DC3A6F2AA9FBE400066052 /* Speedometer.storyboard in Resources */,
-				76F5CA9C2ABB396400DC358C /* TempDetail.storyboard in Resources */,
+				76F5CA9C2ABB396400DC358C /* StatisticsDetail.storyboard in Resources */,
 				7693D43E2AAD98A8005E14E0 /* Test.storyboard in Resources */,
 				76E9E30B2AA76E400072FA48 /* TempResult.storyboard in Resources */,
 			);
@@ -388,18 +378,18 @@
 				7693D4452AAD9C52005E14E0 /* MapSnapshotAdjustmentViewController.swift in Sources */,
 				765FA0FA2AC321CD00C5FF31 /* ImagePicker.swift in Sources */,
 				764FD7092AA49BE000C4ECF1 /* TestViewController.swift in Sources */,
-				7603AFAA2AB2F22C007A027C /* StatisticsDetailViewController.swift in Sources */,
 				76DC9E6A2AB075B3002D2A87 /* ResultContainer.xcdatamodeld in Sources */,
 				7693D4492AAD9E90005E14E0 /* SpeedometerResultCompletionViewController.swift in Sources */,
 				76DC3A692AA9DD8C00066052 /* CustomAnnotation.swift in Sources */,
+				761DF4902AC41AFE005D2E8F /* CustomCardButton.swift in Sources */,
 				7691B48B2AB185AD00454E6A /* CustomRoundButton.swift in Sources */,
 				76E9E3112AA87F620072FA48 /* Stopwatch.swift in Sources */,
 				764FD7052AA49BE000C4ECF1 /* AppDelegate.swift in Sources */,
 				760CA4862AAA015D00E1E183 /* HomeViewController.swift in Sources */,
 				760CA4882AAA081700E1E183 /* SpeedometerViewModel.swift in Sources */,
 				760CA4842AAA014100E1E183 /* SettingViewController.swift in Sources */,
-				76F5CAA62ABC1F1800DC358C /* TempStatisticsViewController.swift in Sources */,
-				76F5CAA42ABC1EDA00DC358C /* TempRowCell.swift in Sources */,
+				76F5CAA62ABC1F1800DC358C /* StatisticsViewController.swift in Sources */,
+				76F5CAA42ABC1EDA00DC358C /* StatisticsRowCell.swift in Sources */,
 				7691B4992AB206E500454E6A /* StatisticsViewModel.swift in Sources */,
 				7603AFC22AB86F7E007A027C /* MainTabBarViewModel.swift in Sources */,
 				76E9E30F2AA862300072FA48 /* LocationPublisher.swift in Sources */,
@@ -407,14 +397,12 @@
 				7603AFBA2AB328E2007A027C /* SavedResult+CoreDataClass.swift in Sources */,
 				76DED9D02AADA41100C7660C /* SpeedometerNavigationController.swift in Sources */,
 				7603AFAC2AB303D6007A027C /* DateFormatters.swift in Sources */,
-				76F5CA9E2ABB468000DC358C /* TempStatisticsDetailViewController.swift in Sources */,
+				76F5CA9E2ABB468000DC358C /* StatisticsDetailViewController.swift in Sources */,
 				76E9E3152AA8D0F50072FA48 /* UIColor + interpolate.swift in Sources */,
-				76DC9E672AB06C5A002D2A87 /* StatisticsRowCell.swift in Sources */,
 				764FD7072AA49BE000C4ECF1 /* SceneDelegate.swift in Sources */,
 				760CA47C2AA9FD7A00E1E183 /* SpeedometerViewController.swift in Sources */,
 				76E9E30D2AA76EF00072FA48 /* TempResultViewController.swift in Sources */,
 				7691B48D2AB1ABB200454E6A /* CoreDataManager.swift in Sources */,
-				760CA4822AAA012900E1E183 /* StatisticsViewController.swift in Sources */,
 				7603AFC42AB87FD1007A027C /* HomeViewModel.swift in Sources */,
 				7603AFBE2AB849BB007A027C /* SpeedometerResultCompletionViewModel.swift in Sources */,
 			);

@@ -7,17 +7,15 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+class CustomRoundButton: UIButton {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.borderWidth = 10
-        self.layer.borderColor = UIColor.label.cgColor
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateCornerRadius()
+        updateCornerRadius(view: self)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -34,16 +32,16 @@ class CustomButton: UIButton {
         }
     }
 
-    private func updateCornerRadius() {
-        let buttonSize = min(bounds.width, bounds.height)
-        layer.cornerRadius = buttonSize / 2
-        clipsToBounds = true
+    func updateCornerRadius(view: UIView) {
+        let size = min(view.bounds.width, view.bounds.height)
+        view.layer.cornerRadius = size / 2
+        view.clipsToBounds = true
     }
 
     override var isHighlighted: Bool {
         didSet {
             // 버튼이 highlighted 됐을 때 색상 변경
-            backgroundColor = isHighlighted ? .darkGray : .clear
+//            backgroundColor = isHighlighted ? .darkGray : .clear
 
             // 버튼이 highlighted 됐을 때 scale 변경
             if isHighlighted {
@@ -51,7 +49,7 @@ class CustomButton: UIButton {
                     self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                 }
             } else {
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.1) {
                     self.transform = CGAffineTransform.identity
                 }
             }

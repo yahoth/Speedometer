@@ -56,13 +56,14 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
 
         let startLocation = CLLocation(latitude: startCoordinate.latitude, longitude: startCoordinate.longitude)
         let endLocation = CLLocation(latitude: endCoordinate.latitude, longitude: endCoordinate.longitude)
-        let errorResult = ("error", "error")
+        let errorResult = ("위치정보 미상", "")
+
         do {
             guard let startPlacemark = try await geocoder.reverseGeocodeLocation(startLocation).first else { return errorResult }
             guard let endPlacemark = try await geocoder.reverseGeocodeLocation(endLocation).first else { return errorResult }
 
-            let start = "\(startPlacemark.locality ?? "error"), \(startPlacemark.subLocality ?? "error")"
-            let end = "\(endPlacemark.locality ?? "error"), \(endPlacemark.subLocality ?? "error")"
+            let start = "\(startPlacemark.locality ?? "") \(startPlacemark.subLocality ?? "")"
+            let end = "\(endPlacemark.locality ?? "") \(endPlacemark.subLocality ?? "")"
             return (start, end)
         } catch let error {
             print(error.localizedDescription)
@@ -70,22 +71,24 @@ class LocationPublisher: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func getPlaceMark(for location: CLLocation) -> Future<CLPlacemark, Error> {
-
-        let geocoder = CLGeocoder()
-        return Future() { promise in
-            geocoder.reverseGeocodeLocation(location) { placemarks, error in
-                if let error = error {
-                    promise(.failure(error))
-                    return
-                }
-                guard let placemark = placemarks?.first else {
-                    promise(.failure(CLError(.geocodeFoundNoResult)))
-                    return
-                }
-
-                promise(.success(placemark))
-            }
-        }
-    }
+//    func getPlaceMark(for coordinate: CLLocationCoordinate2D) -> Future<CLPlacemark, Error> {
+//
+//        let geocoder = CLGeocoder()
+//        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+//
+//        return Future() { promise in
+//            geocoder.reverseGeocodeLocation(location) { placemarks, error in
+//                if let error = error {
+//                    promise(.failure(error))
+//                    return
+//                }
+//                guard let placemark = placemarks?.first else {
+//                    promise(.failure(CLError(.geocodeFoundNoResult)))
+//                    return
+//                }
+//
+//                promise(.success(placemark))
+//            }
+//        }
+//    }
 }

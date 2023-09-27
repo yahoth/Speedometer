@@ -12,7 +12,7 @@ import MapKit
 class SpeedometerResultCompletionViewModel {
     let coreDataManager = CoreDataManager()
     let locationPublisher = LocationPublisher()
-    var imagePickerDelegate = ImagePickerDelegate()
+    var imagePickerDelegate = ImagePicker()
 
     @Published var speedometerResult: SavedResult
     @Published var span: MKCoordinateSpan?
@@ -32,7 +32,7 @@ class SpeedometerResultCompletionViewModel {
         return coordinate
     }
 
-    init( speedometerResult: SavedResult, allCoordinates: [CLLocationCoordinate2D]) {
+    init(speedometerResult: SavedResult, allCoordinates: [CLLocationCoordinate2D]) {
         self.speedometerResult = speedometerResult
         self.allCoordinates = allCoordinates
 
@@ -63,6 +63,8 @@ class SpeedometerResultCompletionViewModel {
             speedometerResult.startAddress = address.0
             speedometerResult.endAddress = address.1
         }
+
+        speedometerResult.mode = UserDefaults.standard.string(forKey: "Mode") ?? "cycling"
 
         speedometerResult.isCompleted = true
         coreDataManager.saveContext()
